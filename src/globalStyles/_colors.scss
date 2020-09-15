@@ -1,0 +1,58 @@
+$darkblue: rgba(17, 19, 62, 1);
+
+$lightblue-gradient: linear-gradient(180deg, #4cc6f8 0%, #81f4df 100%);
+$lightorange-gradient: linear-gradient(180deg, #fc696e 0%, #ff924d 100%);
+$lightgreen-gradient: linear-gradient(180deg, #38f8d2 0%, #43eb84 100%);
+
+$lightblue1: rgba(76, 198, 248, 1);
+$darkblue1: darken(rgba(76, 198, 248, 1), 20%);
+$lightblue2: rgba(129, 244, 223, 1);
+$darkblue2: darken(rgba(129, 244, 223, 1), 20%);
+$lightorange1: rgba(252, 105, 110, 1);
+$darkorange1: darken(rgba(252, 105, 110, 1), 20%);
+$lightorange2: rgba(255, 146, 77, 1);
+$darkorange3: darken(rgba(255, 146, 77, 1), 20%);
+$lightgreen1: rgba(56, 248, 210, 1);
+$darkgreen1: darken(rgba(56, 248, 210, 1), 20%);
+$lightgreen2: rgba(67, 235, 132, 1);
+$darkgreen2: darken(rgba(67, 235, 132, 1), 20%);
+$darkgreen3: darken(rgba(67, 235, 132, 1), 30%);
+
+$text-gradient-blue: -webkit-linear-gradient(180deg, #4cc6f8 0%, #81f4df 100%);
+$text-gradient-orange: -webkit-linear-gradient(
+  180deg,
+  #fc696e 0%,
+  #ff924d 100%
+);
+
+$text-gradient-blue-dark: -webkit-linear-gradient(
+  180deg,
+  $darkblue1 0%,
+  $darkblue2 100%
+);
+
+$text-gradient-green-dark: -webkit-linear-gradient(
+  180deg,
+  $darkblue1 0%,
+  $darkgreen1 100%
+);
+
+$text-gradient-green-dark2: -webkit-linear-gradient(
+  180deg,
+  $darkblue2 0%,
+  $darkgreen2 100%
+);
+
+@function set-color($color) {
+  @if (lightness($color) > 40) {
+    @return $darkblue;
+  } @else {
+    @return #fff;
+  }
+}
+
+@mixin blendy($img, $color, $blend) {
+  background-image: url(#{$img});
+  background-color: $color;
+  background-blend-mode: $blend;
+}

@@ -1,0 +1,146 @@
+@import "../../../globalStyles/colors";
+
+.Container {
+  padding: 0 50px;
+  height: 150px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+}
+
+.ContainerScroll {
+  height: 100px;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+
+.LogoContainer {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  // border: 1px solid red;
+
+  img {
+    width: auto;
+    height: 50%;
+    max-height: 100%;
+  }
+}
+
+.ListContainer {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid red;
+
+  // div {
+  //   height: 100%;
+  //   width: 100%;
+  //   ul {
+  //     height: 100%;
+  //     width: 100%;
+  //     display: flex;
+  //     flex-direction: row;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     padding: 0;
+  //     margin: 0;
+
+  //     li {
+  //       padding: 5px 15px;
+  //       border-radius: 25px;
+  //       cursor: pointer;
+  //       transition: all 0.3s ease-in-out;
+
+  //       a {
+  //         font-size: 1.3rem;
+  //       }
+  //     }
+
+  //     li:hover {
+  //       transition: all 0.3s ease-in-out;
+
+  //       a {
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+// .ListContainerLight {
+//   div {
+//     ul {
+//       li {
+//         a {
+//           color: $darkblue;
+//         }
+//       }
+//       li:hover {
+//         background: $darkblue;
+//         a {
+//           color: #fff;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .ListContainerDark {
+//   div {
+//     ul {
+//       li {
+//         a {
+//           color: #fff;
+//         }
+//       }
+//       li:hover {
+//         background: #fff;
+//         a {
+//           color: $darkblue;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.SideDrawerToggle {
+  height: 100%;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.SideDrawerToggleLight {
+  svg {
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .ListContainer {
+    justify-content: flex-end;
+    div:first-of-type {
+      display: none;
+    }
+  }
+
+  .SideDrawerToggle {
+    display: flex;
+  }
+}

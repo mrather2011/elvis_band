@@ -1,0 +1,90 @@
+@import "../../globalStyles/colors";
+
+.ActiveLink {
+  a {
+    background: $darkblue;
+    padding: 5px 15px;
+    border-radius: 25px;
+    color: $lightorange1;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.ActiveLinkDark {
+  a {
+    background: $lightorange-gradient;
+    padding: 5px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: $darkblue;
+  }
+}
+
+.Link {
+  height: 100%;
+  width: 100%;
+  ul {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    li {
+      a {
+        padding: 5px 15px;
+        border-radius: 25px;
+        font-size: 1.3rem;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+      }
+    }
+
+    a:hover {
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.LinkDark {
+  a {
+    color: $darkblue;
+  }
+}
+.LinkDark:hover {
+  a {
+    background: $darkblue;
+    color: #fff;
+  }
+}
+
+.LinkLight {
+  a {
+    color: #fff;
+  }
+}
+.LinkLight:hover {
+  a {
+    background: #fff;
+    color: $darkblue;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Link {
+    height: 70%;
+    border: 5px solid blue;
+
+    ul {
+      li,
+      .ActiveLink {
+        padding: 20px 60px;
+      }
+    }
+  }
+}
