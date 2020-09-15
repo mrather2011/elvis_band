@@ -11,6 +11,15 @@ module.exports = {
   },
   /* Your site config here */
   plugins: [
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["JimmiScript"],
+          urls: ["./static/Fonts/JimmyScript-Rg.ttf"],
+        },
+      },
+    },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     {
@@ -18,6 +27,13 @@ module.exports = {
       options: {
         name: "src",
         path: `${__dirname}/src/`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "fonts",
+        path: `${__dirname}/src/fonts/`,
       },
     },
     "gatsby-plugin-sharp",

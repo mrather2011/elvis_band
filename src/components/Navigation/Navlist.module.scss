@@ -2,10 +2,10 @@
 
 .ActiveLink {
   a {
-    background: $darkblue;
+    background: $green-blue-crayola;
     padding: 5px 15px;
     border-radius: 25px;
-    color: $lightorange1;
+    color: $timberwolf;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
@@ -13,12 +13,12 @@
 
 .ActiveLinkDark {
   a {
-    background: $lightorange-gradient;
+    background: $timberwolf;
     padding: 5px 15px;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    color: $darkblue;
+    color: $green-blue-crayola;
   }
 }
 
@@ -37,9 +37,10 @@
 
     li {
       a {
+        font-family: "Baddest";
         padding: 5px 15px;
         border-radius: 25px;
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
       }
@@ -53,12 +54,12 @@
 
 .LinkDark {
   a {
-    color: $darkblue;
+    color: $green-blue-crayola;
   }
 }
 .LinkDark:hover {
   a {
-    background: $darkblue;
+    background: $green-blue-crayola;
     color: #fff;
   }
 }
@@ -71,7 +72,7 @@
 .LinkLight:hover {
   a {
     background: #fff;
-    color: $darkblue;
+    color: $green-blue-crayola;
   }
 }
 

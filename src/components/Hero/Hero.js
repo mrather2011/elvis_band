@@ -4,6 +4,23 @@ import classes from "./Hero.module.scss"
 const Hero = props => {
   return (
     <div className={classes.Container}>
+      <div className={classes.TextContainer}>
+        <div className={classes.Dash}></div>
+        <div className={classes.Text}>
+          <h1>The JC Underhill Band</h1>
+          <h2>The authentic Elvis Experience</h2>
+          <div>
+            <button>About Us</button>
+            <button>Explore Music</button>
+          </div>
+        </div>
+      </div>
+      <div className={classes.MusicPlayer}>
+        <div></div>
+        <div>
+          <h1>Play</h1>
+        </div>
+      </div>
       <div className={classes.Image}></div>
     </div>
   )
