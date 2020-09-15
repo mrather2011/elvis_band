@@ -1,7 +1,52 @@
+@import "../../globalStyles/colors";
+
 .Container {
   position: relative;
   top: 0;
   height: 700px;
   width: 100%;
-  border: 1px solid red;
+  background-image: url("../../img/liveCrowd.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 99;
+  //   border: 1px solid red;
+}
+
+.Backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.TextBox {
+  position: relative;
+  top: 50px;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //   border: 1px solid #fff;
+  z-index: 999;
+
+  h1 {
+    font-family: "Baddest";
+    letter-spacing: 5px;
+    font-size: 3rem;
+    color: $timberwolf;
+  }
+}
+
+.Dash {
+  width: 100px;
+  height: 5px;
+  background: $timberwolf;
+  border-radius: 25px;
+  border: 1px solid $timberwolf;
 }

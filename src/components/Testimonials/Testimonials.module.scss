@@ -1,7 +1,73 @@
+@import "../../globalStyles/colors";
+
 .Container {
   position: relative;
   top: 0;
   height: 600px;
   width: 100%;
-  border: 1px solid red;
+  background-image: url("../../img/guitar.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  //   border: 1px solid red;
+}
+
+.HeaderText {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  //   border: 1px solid $timberwolf;
+
+  h1 {
+    color: $timberwolf;
+    font-family: "Baddest";
+    font-size: 3rem;
+    letter-spacing: 5px;
+  }
+}
+
+.TextContainer {
+  padding: 0 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 99;
+  //   border: 1px solid $timberwolf;
+}
+
+.Example {
+  padding: 0 20px;
+  height: 90%;
+  width: 33%;
+  margin: 0 20px;
+  border: 1px solid $timberwolf;
+  border-radius: 25px;
+
+  h1,
+  p {
+    color: $timberwolf;
+    text-align: center;
+  }
+}
+
+.Backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
 }

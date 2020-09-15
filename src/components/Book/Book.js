@@ -4,7 +4,10 @@ import classes from "./Book.module.scss"
 const Book = props => {
   return (
     <div className={classes.Container}>
-      <h1>Book a Date</h1>
+      <div className={classes.HeaderText}>
+        <h1>Book a Date</h1>
+      </div>
+
       <div className={classes.FormContainer}>
         <form>
           <div>
@@ -26,12 +29,11 @@ const Book = props => {
           </div>
 
           <div>
+            <label>How Did You Hear About Us</label>
             <select>
-              <option value="Buy">Looking to Buy</option>
-              <option value="Sell">Looking to Sell</option>
-              <option value="marketValuation">
-                Looking to get a sense of the market
-              </option>
+              <option value="google">google</option>
+              <option value="facebook">facebook</option>
+              <option value="referral">referral</option>
               <option value="Other">Other</option>
             </select>
           </div>

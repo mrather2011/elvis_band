@@ -1,7 +1,54 @@
+@import "../../globalStyles/colors";
+
 .Container {
   position: relative;
   top: 0;
   height: 400px;
   width: 100%;
-  border: 1px solid red;
+  //   border: 1px solid red;
+}
+
+.TextBox {
+  position: relative;
+  top: 75px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  //   border: 1px solid black;
+
+  h1 {
+    margin: 15px 0;
+    font-family: "Baddest";
+    font-size: 3rem;
+    letter-spacing: 5px;
+  }
+
+  p {
+    margin: 15px 0;
+    font-size: 1.5rem;
+  }
+
+  button {
+    background: transparent;
+    color: $testred;
+    border: 1px solid $testred;
+    margin: 15px 0;
+    height: 75px;
+    width: 225px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover {
+    background: lighten($testred, 10%);
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  button:focus {
+    outline: none;
+  }
 }

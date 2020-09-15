@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Addington";
 }
 
 ul {
@@ -15,4 +16,9 @@ ul {
 @font-face {
   font-family: "Baddest";
   src: url("../fonts/BADDEST.ttf");
+}
+
+@font-face {
+  font-family: "Addington";
+  src: url("../fonts/AddingtonCF-Thin.otf");
 }
