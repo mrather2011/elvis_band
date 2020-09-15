@@ -1,11 +1,14 @@
 import React from "react"
 import Layout from "../components/layout"
-import Contact from "../components/Contact/Contact"
+import Head from "../components/head"
+import History from "../components/History/History"
+import Experience from "../components/Experience/Experience"
 
-const ContactPage = props => {
+const AboutPage = props => {
   return (
     <div>
       <Layout location={props.location}>
+        <Head title={"Home"} />
         <div
           style={{
             display: "relative",
@@ -14,10 +17,11 @@ const ContactPage = props => {
             border: "1px solid blue",
           }}
         ></div>
-        <Contact />
+        <History />
+        <Experience />
       </Layout>
     </div>
   )
 }
 
-export default ContactPage
+export default AboutPage

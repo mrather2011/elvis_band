@@ -17,8 +17,16 @@ const Navlist = ({ navScroll, sideDrawerOpen, location }) => {
         <li className={pathname === "/" ? active : link}>
           <Link to="/">Home</Link>
         </li>
-        <li className={pathname === "/services" ? active : link}>
-          <Link to="/services">Services</Link>
+        <li className={pathname === "/about" ? active : link}>
+          <Link to="/about">About</Link>
+        </li>
+
+        <li className={pathname === "/music" ? active : link}>
+          <Link to="/music">Music</Link>
+        </li>
+
+        <li className={pathname === "/calendar" ? active : link}>
+          <Link to="/calendar">Calendar</Link>
         </li>
 
         <li className={pathname === "/contact" ? active : link}>

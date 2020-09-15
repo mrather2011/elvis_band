@@ -1,17 +1,22 @@
 import React from "react"
 import Layout from "../components/layout"
 import Head from "../components/head"
+import Hero from "../components/Hero/Hero"
+import Gallery from "../components/Gallery/Gallery"
+import Intro from "../components/Intro/Intro"
+import Testimonials from "../components/Testimonials/Testimonials"
+import Book from "../components/Book/Book"
 
 const IndexPage = props => {
   return (
     <div>
       <Layout location={props.location}>
         <Head title={"Home"} />
-        <h1>Homepage</h1>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta,
-          tempore.
-        </p>
+        <Hero />
+        <Gallery />
+        <Intro />
+        <Testimonials />
+        <Book />
       </Layout>
     </div>
   )

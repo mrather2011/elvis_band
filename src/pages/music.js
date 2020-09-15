@@ -1,8 +1,8 @@
 import React from "react"
 import Layout from "../components/layout"
-import Contact from "../components/Contact/Contact"
+import Music from "../components/Music/Music"
 
-const ContactPage = props => {
+const MusicPage = props => {
   return (
     <div>
       <Layout location={props.location}>
@@ -14,10 +14,10 @@ const ContactPage = props => {
             border: "1px solid blue",
           }}
         ></div>
-        <Contact />
+        <Music />
       </Layout>
     </div>
   )
 }
 
-export default ContactPage
+export default MusicPage
