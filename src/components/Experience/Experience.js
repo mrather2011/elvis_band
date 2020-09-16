@@ -4,7 +4,9 @@ import classes from "./Experience.module.scss"
 const Experience = props => {
   return (
     <div className={classes.Container}>
-      <h1>The Elvis Experience</h1>
+      <div className={classes.HeaderText}>
+        <h1>The Elvis Experience</h1>
+      </div>
     </div>
   )
 }

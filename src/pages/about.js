@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Head from "../components/head"
 import History from "../components/History/History"
 import Experience from "../components/Experience/Experience"
+import Book from "../components/Book/Book"
 
 const AboutPage = props => {
   return (
@@ -19,6 +20,7 @@ const AboutPage = props => {
         ></div>
         <History />
         <Experience />
+        <Book />
       </Layout>
     </div>
   )

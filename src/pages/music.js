@@ -6,14 +6,6 @@ const MusicPage = props => {
   return (
     <div>
       <Layout location={props.location}>
-        <div
-          style={{
-            display: "relative",
-            top: "150px",
-            height: "150px",
-            border: "1px solid blue",
-          }}
-        ></div>
         <Music />
       </Layout>
     </div>

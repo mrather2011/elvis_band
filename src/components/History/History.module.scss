@@ -1,7 +1,130 @@
 .Container {
   position: relative;
   top: 0;
-  height: 700px;
+  height: 1300px;
   width: 100%;
   border: 1px solid red;
+}
+
+.HeaderText {
+  padding: 0 100px;
+  position: relative;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //   border: 1px solid black;
+
+  h1 {
+    margin: 20px 0;
+    text-align: center;
+    font-family: "Baddest";
+    letter-spacing: 5px;
+    font-size: 3rem;
+  }
+}
+
+.Dash {
+  top: 30px;
+  left: 100px;
+  width: 100px;
+  height: 5px;
+  background: black;
+  border-radius: 25px;
+  z-index: 99;
+}
+
+.TextBoxOne {
+  padding: 0 100px;
+  position: relative;
+  top: 100px;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  //   border: 1px solid black;
+
+  div {
+    margin-right: 50px;
+    height: 100%;
+    width: 50%;
+  }
+
+  div:nth-of-type(1) {
+    border: 1px solid black;
+  }
+
+  div:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    h1,
+    p {
+      //   text-align: right;
+    }
+
+    .Dash {
+      margin: 0;
+      top: 30px;
+      left: 100px;
+      width: 100px;
+      height: 5px;
+      background: black;
+      border-radius: 25px;
+      z-index: 99;
+    }
+  }
+}
+
+.TextBoxTwo {
+  padding: 0 100px;
+  position: relative;
+  top: 300px;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  //   border: 1px solid black;
+
+  div {
+    margin-right: 50px;
+    height: 100%;
+    width: 50%;
+  }
+
+  div:nth-of-type(2) {
+    border: 1px solid black;
+  }
+
+  div:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    h1,
+    p {
+      //   text-align: right;
+    }
+
+    .Dash {
+      margin: 0;
+      top: 30px;
+      left: 100px;
+      width: 100px;
+      height: 5px;
+      background: black;
+      border-radius: 25px;
+      z-index: 99;
+    }
+  }
 }
