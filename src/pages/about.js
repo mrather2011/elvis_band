@@ -13,9 +13,9 @@ const AboutPage = props => {
         <div
           style={{
             display: "relative",
-            top: "150px",
-            height: "150px",
-            border: "1px solid blue",
+            top: "0",
+            height: "100px",
+            // border: "1px solid blue",
           }}
         ></div>
         <History />
