@@ -5,7 +5,8 @@ const Music = props => {
   return (
     <div className={classes.Container}>
       <div className={classes.HeaderText}>
-        <h1>Listen to Our Music</h1>
+        <div className={classes.Dash}></div>
+        <h1>A Taste of Our Catalogue</h1>
       </div>
 
       <div className={classes.MusicPlayer}>
