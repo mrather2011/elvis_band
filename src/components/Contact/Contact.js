@@ -4,7 +4,9 @@ import classes from "./Contact.module.scss"
 const Contact = props => {
   return (
     <div className={classes.Container}>
-      <h1>Book a Date</h1>
+      <div className={classes.HeaderText}>
+        <h1>Get In Touch</h1>
+      </div>
       <div className={classes.FormContainer}>
         <form>
           <div>

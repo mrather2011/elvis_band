@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
-import Contact from "../components/Contact/Contact"
+import Book from "../components/Book/Book"
 
 const ContactPage = props => {
   return (
@@ -9,12 +9,12 @@ const ContactPage = props => {
         <div
           style={{
             display: "relative",
-            top: "150px",
-            height: "150px",
-            border: "1px solid blue",
+            top: "0px",
+            height: "100px",
+            // border: "1px solid blue",
           }}
         ></div>
-        <Contact />
+        <Book />
       </Layout>
     </div>
   )

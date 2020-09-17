@@ -32,8 +32,8 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "fonts",
-        path: `${__dirname}/src/fonts/`,
+        name: "songs",
+        path: `${__dirname}/src/playlist/`,
       },
     },
     "gatsby-plugin-sharp",
@@ -41,6 +41,16 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
+          {
+            resolve: "gatsby-remark-audio",
+            options: {
+              preload: "auto",
+              loop: false,
+              controls: true,
+              muted: false,
+              autoplay: false,
+            },
+          },
           {
             resolve: "gatsby-source-contentful",
             options: {

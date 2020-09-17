@@ -21,6 +21,7 @@
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-sharp": "^2.6.35",
     "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-remark-audio": "^1.0.2",
     "gatsby-remark-images": "^3.3.29",
     "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-contentful": "^2.3.45",
@@ -29,7 +30,8 @@
     "node-sass": "^4.14.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-icons": "^3.11.0"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
