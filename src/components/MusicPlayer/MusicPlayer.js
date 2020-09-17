@@ -36,6 +36,12 @@ const MusicPlayer = props => {
     setCurrentTime(0)
   }
 
+  const songEnded = () => {
+    audio.current.currentTime = 0
+    setCurrentTime(0)
+    inPlay(false)
+  }
+
   const changeSongPosition = e => {
     if (barDimensions.width !== 0) {
       let xValue = e.clientX - progressElement.current.getBoundingClientRect().x
@@ -119,7 +125,7 @@ const MusicPlayer = props => {
         ref={audio}
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
         onDurationChange={() => setDuration(audio.current.duration)}
-        onEnded={stopTrack}
+        onEnded={songEnded}
       >
         <source src={testTrack} type="audio/mp3" />
       </audio>
