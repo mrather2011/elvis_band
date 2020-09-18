@@ -16,7 +16,7 @@ const Hero = props => {
           </div>
         </div>
       </div>
-      <MusicPlayer />
+      <MusicPlayer top={"150px"} />
 
       <div className={classes.Image}></div>
     </div>

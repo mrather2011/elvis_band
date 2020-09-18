@@ -22,7 +22,7 @@ const Layout = props => {
     <div>
       <Navbar location={props.location} navScroll={navScroll} />
       {props.children}
-      <Footer />
+      <Footer position={props.footerPosition} place={props.footerPlace} />
     </div>
   )
 }

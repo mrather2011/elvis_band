@@ -5,7 +5,11 @@ import Book from "../components/Book/Book"
 const ContactPage = props => {
   return (
     <div>
-      <Layout location={props.location}>
+      <Layout
+        location={props.location}
+        footerPlace={"bottom: 0"}
+        footerPosition={"absolute"}
+      >
         <div
           style={{
             display: "relative",

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React, { useRef, useState, useEffect } from "react"
-import classes from "./MusicPlayer.module.scss"
 import { css, jsx } from "@emotion/core"
+import { colors } from "../../globalStyles/colors"
 import testTrack from "../../../static/songs/test.mp3"
 import { FaPlay, FaPause, FaForward, FaBackward, FaStop } from "react-icons/fa"
 
-const MusicPlayer = props => {
+const MusicPlayer = ({ top }) => {
   let progressElement = useRef()
   let audio = useRef()
   const [inPlay, setInPlay] = useState(false)
@@ -39,7 +39,7 @@ const MusicPlayer = props => {
   const songEnded = () => {
     audio.current.currentTime = 0
     setCurrentTime(0)
-    inPlay(false)
+    setInPlay(false)
   }
 
   const changeSongPosition = e => {
@@ -83,10 +83,10 @@ const MusicPlayer = props => {
     left: 0;
     height: 10px;
     width: ${progress}%;
-    background: #fff;
+    background: ${colors.timberwolf};
     border-radius: 25px;
     z-index: 99;
-    color: #fff;
+    color: ${colors.timberwolf};
   `
 
   const songLength = css`
@@ -96,19 +96,76 @@ const MusicPlayer = props => {
     left: 0;
     height: 10px;
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid ${colors.timberwolf};
     border-radius: 25px;
     z-index: 999;
-    color: #fff;
+    color: ${colors.timberwolf};
+  `
+
+  const musicCss = css`
+    margin: 0 100px;
+    padding: 0 20px;
+    position: relative;
+    height: 150px;
+    width: 50%;
+    top: ${top};
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    div:nth-of-type(1),
+    div:nth-of-type(2),
+    div:nth-of-type(3),
+    div:nth-of-type(4) {
+      cursor: pointer;
+      height: 50px;
+      width: 50px;
+      border: 1px solid ${colors.timberwolf};
+      border-radius: 50%;
+      margin-right: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+
+      svg {
+        color: ${colors.timberwolf};
+      }
+    }
+
+    div:nth-of-type(1):hover,
+    div:nth-of-type(2):hover,
+    div:nth-of-type(3):hover,
+    div:nth-of-type(4):hover {
+      background: ${colors.timberwolf};
+      transition: all 0.3s ease-in-out;
+
+      svg {
+        color: black;
+      }
+    }
+  `
+
+  const songDetail = css`
+    p {
+      font-size: 1.5rem;
+      color: ${colors.timberwolf};
+    }
+    span {
+      font-weight: bold;
+    }
   `
 
   return (
-    <div className={classes.MusicPlayer}>
+    <div css={musicCss}>
       <div onClick={playPause}>{prevBtn}</div>
       <div onClick={stopTrack}>{stopBtn}</div>
       <div onClick={playPause}>{playBtn}</div>
       <div onClick={playPause}>{nextBtn}</div>
-      <div className={classes.SongDetail}>
+      <div css={songDetail}>
         <p>
           Song Name: <span>Example</span>
         </p>

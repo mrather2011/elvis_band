@@ -8,7 +8,11 @@ import Book from "../components/Book/Book"
 const AboutPage = props => {
   return (
     <div>
-      <Layout location={props.location}>
+      <Layout
+        location={props.location}
+        footerPlace={"top: 0"}
+        footerPosition={"relative"}
+      >
         <Head title={"Home"} />
         <div
           style={{

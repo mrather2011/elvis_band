@@ -1,5 +1,6 @@
 import React from "react"
 import classes from "./Music.module.scss"
+import MusicPlayer from "../MusicPlayer/MusicPlayer"
 
 const Music = props => {
   return (
@@ -9,12 +10,7 @@ const Music = props => {
         <h1>A Taste of Our Catalogue</h1>
       </div>
 
-      <div className={classes.MusicPlayer}>
-        <div></div>
-        <div>
-          <h1>Play</h1>
-        </div>
-      </div>
+      <MusicPlayer top={"55vh"} />
     </div>
   )
 }
