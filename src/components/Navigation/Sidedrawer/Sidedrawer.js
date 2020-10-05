@@ -1,7 +1,7 @@
 import React from "react"
 import { FaRedo } from "react-icons/fa"
 import Navlist from "../Navlist"
-import classes from "./sidedrawer.module.scss"
+import classes from "./Sidedrawer.module.scss"
 
 const SideDrawer = ({ sDOpen, toggleSideDrawer }) => {
   return (

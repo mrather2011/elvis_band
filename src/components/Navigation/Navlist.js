@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import classes from "./navlist.module.scss"
+import classes from "./Navlist.module.scss"
 
 const Navlist = ({ navScroll, sideDrawerOpen, location }) => {
   let pathname = location ? location.pathname : null

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 // import logoImg from "../../../img/logo-only.png"
 // import lightLogo from "../../../img/Logo light.png"
-import classes from "./navbar.module.scss"
+import classes from "./Navbar.module.scss"
 import { FaAlignJustify } from "react-icons/fa"
 import Navlist from "../Navlist"
 import Sidedrawer from "../Sidedrawer/Sidedrawer"
