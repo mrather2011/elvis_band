@@ -12,8 +12,6 @@ import video4 from "../../../static/vidoes/JC & the Elvis Experience All Shook U
 import { FaPlay, FaPause, FaForward, FaBackward, FaStop } from "react-icons/fa"
 
 const MusicPlayer = ({ top }) => {
-  console.log(trackList)
-
   let progressElement = useRef()
   let audio = useRef()
   const [inPlay, setInPlay] = useState(false)
@@ -22,7 +20,6 @@ const MusicPlayer = ({ top }) => {
   const [barDimensions, setBarDimensions] = useState(0)
   const [currTrack, setCurrTrack] = useState(0)
   const [mediaType, setMediaType] = useState("audio")
-  console.log(currTrack)
 
   let audioList = [
     { track: testTrack2, name: "American Trilogy" },
@@ -100,7 +97,6 @@ const MusicPlayer = ({ top }) => {
       if (audio.current.paused) {
         setInPlay(!inPlay)
         audio.current.play()
-        formatTime()
       } else {
         audio.current.pause()
         setInPlay(!inPlay)
@@ -126,7 +122,7 @@ const MusicPlayer = ({ top }) => {
   const changeSongPosition = e => {
     if (barDimensions.width !== 0) {
       let xValue = e.clientX - progressElement.current.getBoundingClientRect().x
-      console.log("xValue", xValue)
+
       let newProgress = (xValue / barDimensions.width) * duration
       audio.current.currentTime = newProgress
       setCurrentTime(newProgress)
@@ -138,10 +134,6 @@ const MusicPlayer = ({ top }) => {
   useEffect(() => {
     setBarDimensions(progressElement.current.getBoundingClientRect())
   }, [progressElement.current])
-
-  const formatTime = () => {
-    console.log(currentTime)
-  }
 
   let minutes = Math.floor(currentTime / 60)
   let seconds
