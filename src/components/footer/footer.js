@@ -36,7 +36,7 @@ const Footer = ({ position, place }) => {
   `
   return (
     <div css={footerClass}>
-      <p>Created by {data.site.siteMetadata.author} studios 2020</p>
+      <p>Created by {data.site.siteMetadata.author} 2020</p>
     </div>
   )
 }

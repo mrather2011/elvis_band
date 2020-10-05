@@ -5,7 +5,10 @@ import { colors } from "../../globalStyles/colors"
 
 import testTrack2 from "../../../static/songs/American Trilogy.mp3"
 import testTrack3 from "../../../static/songs/Burning Love by J C  & The Elvis Experience 2020.mp3"
-import testTrack4 from "../../../static/songs/A Fan Favorite from York Days 2017.mp4"
+import video1 from "../../../static/vidoes/A Fan Favorite from York Days 2017.mp4"
+import video2 from "../../../static/vidoes/American Trilogy.mp4"
+import video3 from "../../../static/vidoes/Burning Love by J C  & The Elvis Experience 2020.mp4"
+import video4 from "../../../static/vidoes/JC & the Elvis Experience All Shook Up at The Levitt Theatre.mp4"
 import { FaPlay, FaPause, FaForward, FaBackward, FaStop } from "react-icons/fa"
 
 const MusicPlayer = ({ top }) => {
@@ -21,8 +24,18 @@ const MusicPlayer = ({ top }) => {
   const [mediaType, setMediaType] = useState("audio")
   console.log(currTrack)
 
-  let audioList = [testTrack2, testTrack3]
-  let videoList = []
+  let audioList = [
+    { track: testTrack2, name: "American Trilogy" },
+    { track: testTrack3, name: "Burning Love" },
+  ]
+
+  let videoList = [
+    { track: video1, name: "A Fan Favorite" },
+    { track: video2, name: "American Trilogy" },
+    { track: video3, name: "Burning Love" },
+    { track: video4, name: "All Shook Up" },
+  ]
+
   let trackList = mediaType === "audio" ? audioList : videoList
   let trackListLength = trackList.length
 
@@ -178,8 +191,6 @@ const MusicPlayer = ({ top }) => {
     width: 800px;
     top: 100px;
 
-    border: 1px solid #fff;
-
     video {
       position: absolute;
       top: 0;
@@ -190,13 +201,12 @@ const MusicPlayer = ({ top }) => {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      border: 5px solid white;
     }
   `
 
   const songDetail = css`
     position: absolute;
-    left: 50%;
+    right: 0;
     p {
       font-size: 1.5rem;
       color: ${colors.timberwolf};
@@ -212,7 +222,7 @@ const MusicPlayer = ({ top }) => {
     position: absolute;
     left: 0;
     bottom: 0;
-    border: 1px solid white;
+
     z-index: 99;
     display: flex;
     flex-direction: row;
@@ -257,7 +267,7 @@ const MusicPlayer = ({ top }) => {
     height: 50px;
     width: 300px;
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     right: 0;
     color: #fff;
     display: flex;
@@ -275,7 +285,16 @@ const MusicPlayer = ({ top }) => {
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      border: 1px solid #fff;
       transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: #fff;
+        color: black;
+        transform: scale(1.1);
+        border: 1px solid black;
+        transition: all 0.3s ease-in-out;
+      }
     }
   `
 
@@ -283,6 +302,7 @@ const MusicPlayer = ({ top }) => {
     background: #fff;
     color: black;
     transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
   `
 
   return (
@@ -293,7 +313,7 @@ const MusicPlayer = ({ top }) => {
         onDurationChange={() => setDuration(audio.current.duration)}
         onEnded={songEnded}
       >
-        <source src={trackList[currTrack]} type="audio/mp3" />
+        <source src={trackList[currTrack].track} type="audio/mp3" />
       </video>
       <div css={controls}>
         <div onClick={prevTrack}>{prevBtn}</div>
@@ -302,7 +322,7 @@ const MusicPlayer = ({ top }) => {
         <div onClick={nextTrack}>{nextBtn}</div>
         <div css={songDetail}>
           <p>
-            Song Name: <span>{trackList[currTrack]}</span>
+            <span>{trackList[currTrack].name}</span>
           </p>
         </div>
         <div

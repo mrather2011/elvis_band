@@ -75,32 +75,40 @@
       outline: none;
     }
 
-    button:first-of-type {
-      background: transparent;
-      border: 1px solid $timberwolf;
-      color: $timberwolf;
-      margin-right: 50px;
-      transition: all 0.3s ease-in-out;
+    a:first-of-type {
+      button {
+        background: transparent;
+        border: 1px solid $timberwolf;
+        color: $timberwolf;
+        margin-right: 50px;
+        transition: all 0.3s ease-in-out;
+      }
     }
 
-    button:first-of-type:hover {
-      background: $timberwolf;
-      color: black;
-      transition: all 0.3s ease-in-out;
+    a:first-of-type {
+      button:hover {
+        background: $timberwolf;
+        color: black;
+        transition: all 0.3s ease-in-out;
+      }
     }
 
-    button:nth-of-type(2) {
-      background: $testred;
-      color: $timberwolf;
-      border: 1px solid black;
-      margin-right: 50px;
-      transition: all 0.3s ease-in-out;
+    a:nth-of-type(2) {
+      button {
+        background: $testred;
+        color: $timberwolf;
+        border: 1px solid black;
+        margin-right: 50px;
+        transition: all 0.3s ease-in-out;
+      }
     }
 
-    button:nth-of-type(2):hover {
-      background: $timberwolf;
-      color: black;
-      transition: all 0.3s ease-in-out;
+    a:nth-of-type(2) {
+      button:hover {
+        background: $timberwolf;
+        color: black;
+        transition: all 0.3s ease-in-out;
+      }
     }
   }
 }

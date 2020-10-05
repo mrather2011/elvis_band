@@ -39,7 +39,7 @@ const Book = props => {
           </div>
           <div>
             <textarea
-              maxlength="300"
+              maxLength="300"
               wrap="hard"
               name="otherDetails"
               placeholder="Anything else we should know?"

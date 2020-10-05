@@ -6,7 +6,7 @@ import Hero from "../components/Hero/Hero"
 import Intro from "../components/Intro/Intro"
 import Testimonials from "../components/Testimonials/Testimonials"
 import Book from "../components/Book/Book"
-import PhotoGallery from "../components/Slider_4/Container"
+import PhotoGallery from "../components/PhotoGallery/Container"
 
 const IndexPage = props => {
   return (
