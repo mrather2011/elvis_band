@@ -10,7 +10,7 @@ const Music = props => {
         <h1>A Taste of Our Catalogue</h1>
       </div>
 
-      <MusicPlayer top={"55vh"} />
+      <MusicPlayer />
     </div>
   )
 }

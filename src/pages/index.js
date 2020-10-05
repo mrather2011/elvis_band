@@ -2,10 +2,11 @@ import React from "react"
 import Layout from "../components/layout"
 import Head from "../components/head"
 import Hero from "../components/Hero/Hero"
-import Gallery from "../components/Gallery/Gallery"
+
 import Intro from "../components/Intro/Intro"
 import Testimonials from "../components/Testimonials/Testimonials"
 import Book from "../components/Book/Book"
+import PhotoGallery from "../components/Slider_4/Container"
 
 const IndexPage = props => {
   return (
@@ -17,7 +18,8 @@ const IndexPage = props => {
       >
         <Head title={"Home"} />
         <Hero />
-        <Gallery />
+
+        <PhotoGallery />
         <Intro />
         <Testimonials />
         <Book />

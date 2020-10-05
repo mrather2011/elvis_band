@@ -2,16 +2,29 @@
 import React, { useRef, useState, useEffect } from "react"
 import { css, jsx } from "@emotion/core"
 import { colors } from "../../globalStyles/colors"
-import testTrack from "../../../static/songs/test.mp3"
+
+import testTrack2 from "../../../static/songs/American Trilogy.mp3"
+import testTrack3 from "../../../static/songs/Burning Love by J C  & The Elvis Experience 2020.mp3"
+import testTrack4 from "../../../static/songs/A Fan Favorite from York Days 2017.mp4"
 import { FaPlay, FaPause, FaForward, FaBackward, FaStop } from "react-icons/fa"
 
 const MusicPlayer = ({ top }) => {
+  console.log(trackList)
+
   let progressElement = useRef()
   let audio = useRef()
   const [inPlay, setInPlay] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [barDimensions, setBarDimensions] = useState(0)
+  const [currTrack, setCurrTrack] = useState(0)
+  const [mediaType, setMediaType] = useState("audio")
+  console.log(currTrack)
+
+  let audioList = [testTrack2, testTrack3]
+  let videoList = []
+  let trackList = mediaType === "audio" ? audioList : videoList
+  let trackListLength = trackList.length
 
   let playBtn = inPlay ? <FaPause /> : <FaPlay />
   let nextBtn = <FaForward />
@@ -20,20 +33,75 @@ const MusicPlayer = ({ top }) => {
 
   let displayTime
 
-  const playPause = () => {
-    if (audio.current.paused) {
-      setInPlay(!inPlay)
-      audio.current.play()
-      formatTime()
+  const switchMedia = type => {
+    stopTrack()
+    audio.current.load()
+    setMediaType(type)
+  }
+
+  const nextTrack = () => {
+    if (currTrack < trackListLength - 1) {
+      setCurrTrack(currTrack + 1)
+      audio.current.pause()
+      audio.current.load()
+      if (inPlay) {
+        audio.current.play()
+      }
+    } else {
+      setCurrTrack(0)
+      audio.current.pause()
+      audio.current.load()
+      if (inPlay) {
+        audio.current.play()
+      }
+    }
+  }
+
+  const prevTrack = () => {
+    if (currentTime < 5) {
+      if (currTrack === 0) {
+        setCurrTrack(trackListLength - 1)
+        audio.current.pause()
+        audio.current.load()
+        if (inPlay) {
+          audio.current.play()
+        }
+      } else {
+        setCurrTrack(currTrack - 1)
+        audio.current.pause()
+        audio.current.load()
+        if (inPlay) {
+          audio.current.play()
+        }
+      }
     } else {
       audio.current.pause()
-      setInPlay(!inPlay)
+      audio.current.currentTime = 0
+      setCurrentTime(0)
+      audio.current.play()
+    }
+  }
+
+  const playPause = () => {
+    if (trackListLength > 0) {
+      if (audio.current.paused) {
+        setInPlay(!inPlay)
+        audio.current.play()
+        formatTime()
+      } else {
+        audio.current.pause()
+        setInPlay(!inPlay)
+      }
     }
   }
 
   const stopTrack = () => {
+    audio.current.pause()
     audio.current.currentTime = 0
     setCurrentTime(0)
+    if (inPlay) {
+      setInPlay(!inPlay)
+    }
   }
 
   const songEnded = () => {
@@ -106,9 +174,45 @@ const MusicPlayer = ({ top }) => {
     margin: 0 100px;
     padding: 0 20px;
     position: relative;
-    height: 150px;
-    width: 50%;
-    top: ${top};
+    height: 600px;
+    width: 800px;
+    top: 100px;
+
+    border: 1px solid #fff;
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid white;
+    }
+  `
+
+  const songDetail = css`
+    position: absolute;
+    left: 50%;
+    p {
+      font-size: 1.5rem;
+      color: ${colors.timberwolf};
+    }
+    span {
+      font-weight: bold;
+    }
+  `
+
+  const controls = css`
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 1px solid white;
     z-index: 99;
     display: flex;
     flex-direction: row;
@@ -149,43 +253,81 @@ const MusicPlayer = ({ top }) => {
     }
   `
 
-  const songDetail = css`
-    p {
-      font-size: 1.5rem;
-      color: ${colors.timberwolf};
+  const media = css`
+    height: 50px;
+    width: 300px;
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      margin: 0;
+      padding: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
-    span {
-      font-weight: bold;
-    }
+  `
+
+  const active = css`
+    background: #fff;
+    color: black;
+    transition: all 0.3s ease-in-out;
   `
 
   return (
     <div css={musicCss}>
-      <div onClick={playPause}>{prevBtn}</div>
-      <div onClick={stopTrack}>{stopBtn}</div>
-      <div onClick={playPause}>{playBtn}</div>
-      <div onClick={playPause}>{nextBtn}</div>
-      <div css={songDetail}>
-        <p>
-          Song Name: <span>Example</span>
-        </p>
-      </div>
-      <div
-        css={songLength}
-        ref={progressElement}
-        onClick={e => changeSongPosition(e)}
-      ></div>
-      <div css={progressBar}>
-        <p>{formattedTime}</p>
-      </div>
-      <audio
+      <video
         ref={audio}
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
         onDurationChange={() => setDuration(audio.current.duration)}
         onEnded={songEnded}
       >
-        <source src={testTrack} type="audio/mp3" />
-      </audio>
+        <source src={trackList[currTrack]} type="audio/mp3" />
+      </video>
+      <div css={controls}>
+        <div onClick={prevTrack}>{prevBtn}</div>
+        <div onClick={stopTrack}>{stopBtn}</div>
+        <div onClick={playPause}>{playBtn}</div>
+        <div onClick={nextTrack}>{nextBtn}</div>
+        <div css={songDetail}>
+          <p>
+            Song Name: <span>{trackList[currTrack]}</span>
+          </p>
+        </div>
+        <div
+          css={songLength}
+          ref={progressElement}
+          onClick={e => changeSongPosition(e)}
+        ></div>
+        <div css={progressBar}>
+          <p>{formattedTime}</p>
+        </div>
+      </div>
+      <div css={media}>
+        <div
+          onClick={() => switchMedia("audio")}
+          css={mediaType === "audio" && active}
+        >
+          Audio
+        </div>
+        <div
+          onClick={() => switchMedia("video")}
+          css={mediaType === "video" && active}
+        >
+          Video
+        </div>
+      </div>
     </div>
   )
 }

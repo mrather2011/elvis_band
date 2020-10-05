@@ -1,6 +1,5 @@
 import React from "react"
 import classes from "./Hero.module.scss"
-import MusicPlayer from "../MusicPlayer/MusicPlayer"
 
 const Hero = props => {
   return (
@@ -16,7 +15,6 @@ const Hero = props => {
           </div>
         </div>
       </div>
-      <MusicPlayer top={"150px"} />
 
       <div className={classes.Image}></div>
     </div>
