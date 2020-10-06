@@ -304,9 +304,9 @@ const MusicPlayer = ({ top }) => {
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
         onDurationChange={() => setDuration(audio.current.duration)}
         onEnded={songEnded}
-      >
-        <source src={trackList[currTrack].track} type="audio/mp3" />
-      </video>
+        src={trackList[currTrack].track}
+        type="audio/mp3"
+      ></video>
       <div css={controls}>
         <div onClick={prevTrack}>{prevBtn}</div>
         <div onClick={stopTrack}>{stopBtn}</div>
