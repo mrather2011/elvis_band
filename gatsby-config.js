@@ -36,7 +36,21 @@ module.exports = {
         path: `${__dirname}/src/playlist/`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/img/`,
+      },
+    },
+    {
+      resolve: "gatsby-background-image",
+      options: {
+        specialChars: "/:",
+      },
+    },
     "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-transformer-remark",
       options: {

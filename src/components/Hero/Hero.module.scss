@@ -113,15 +113,13 @@
   }
 }
 
-.Image {
+.Image,
+.Image::before,
+.Image::after {
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
 
-  background-image: url("../../img/elvis_backdrop.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   z-index: 10;
 }

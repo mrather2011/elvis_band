@@ -89,13 +89,13 @@ const Slider = props => {
   const slidesLength = new Array(count + 4).fill(1)
 
   //   console.log("slideLength", slidesLength)
-  console.log("count", count)
+  // console.log("count", count)
   //   console.log("containerWidth", containerWidth)
-  console.log("width", width)
-  console.log("translate", translate)
-  console.log("index", activeIndex)
+  // console.log("width", width)
+  // console.log("translate", translate)
+  // console.log("index", activeIndex)
   // console.log("jump", jump)
-  console.log("margin", slideMargin)
+  // console.log("margin", slideMargin)
 
   useEffect(() => {
     if (jump === false) {

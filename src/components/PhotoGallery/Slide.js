@@ -47,7 +47,7 @@ const Slide = props => {
       transition: all 0.3s ease-in-out;
     }
   `
-  console.log("key", props.slideKey)
+  // console.log("key", props.slideKey)
   // console.log("active", props.activeIndex)
   return (
     <div css={mainText}>
