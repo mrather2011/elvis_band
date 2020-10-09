@@ -1,14 +1,16 @@
 /** @jsx jsx */
 import React, { useState, useEffect, useRef } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import { css, jsx } from "@emotion/core"
 import Slide from "./Slide"
 import SlideContent from "./SliderContent"
 import Controls from "./Controls"
 import Dots from "./Dots"
 import Sidebar from "./Sidebar"
-import { testContent } from "./Content"
 
 const Slider = props => {
+  let carousel = props.carousel.edges
+  console.log(carousel)
   let container = css`
     position: relative;
     top: 0px;
@@ -83,7 +85,7 @@ const Slider = props => {
     initialTranslateWidth,
     direction,
   } = state
-  let count = Object.keys(testContent).length
+  let count = Object.keys(carousel).length
   let width = containerWidth * (count + 4)
 
   const slidesLength = new Array(count + 4).fill(1)
@@ -225,10 +227,8 @@ const Slider = props => {
                 <Slide
                   key={i}
                   width={containerWidth}
-                  quote={testContent[count - 2].quote}
-                  author={testContent[count - 2].author}
-                  title={testContent[count - 2].title}
-                  photo={testContent[count - 2].photo}
+                  title={carousel[count - 2].node.caption}
+                  photo={carousel[count - 2].node.photo[0].fluid}
                   slideMargin={slideMargin}
                   slideKey={count - 2}
                   activeIndex={activeIndex}
@@ -239,10 +239,8 @@ const Slider = props => {
                 <Slide
                   key={i}
                   width={containerWidth}
-                  quote={testContent[count - 1].quote}
-                  author={testContent[count - 1].author}
-                  title={testContent[count - 1].title}
-                  photo={testContent[count - 1].photo}
+                  title={carousel[count - 1].node.caption}
+                  photo={carousel[count - 1].node.photo[0].fluid}
                   slideMargin={slideMargin}
                   slideKey={count - 1}
                   activeIndex={activeIndex}
@@ -253,10 +251,8 @@ const Slider = props => {
                 <Slide
                   key={i}
                   width={containerWidth}
-                  quote={testContent[0].quote}
-                  author={testContent[0].author}
-                  title={testContent[0].title}
-                  photo={testContent[0].photo}
+                  title={carousel[0].node.caption}
+                  photo={carousel[0].node.photo[0].fluid}
                   slideMargin={slideMargin}
                   slideKey={1}
                   activeIndex={activeIndex}
@@ -267,10 +263,8 @@ const Slider = props => {
                 <Slide
                   key={i}
                   width={containerWidth}
-                  quote={testContent[1].quote}
-                  author={testContent[1].author}
-                  title={testContent[1].title}
-                  photo={testContent[1].photo}
+                  title={carousel[1].node.caption}
+                  photo={carousel[1].node.photo[0].fluid}
                   slideMargin={slideMargin}
                   slideKey={2}
                   activeIndex={activeIndex}
@@ -281,10 +275,8 @@ const Slider = props => {
                 <Slide
                   key={i}
                   width={containerWidth}
-                  quote={testContent[place].quote}
-                  author={testContent[place].author}
-                  title={testContent[place].title}
-                  photo={testContent[place].photo}
+                  title={carousel[place].node.caption}
+                  photo={carousel[place].node.photo[0].fluid}
                   slideMargin={slideMargin}
                   slideKey={place + 1}
                   activeIndex={activeIndex}
@@ -295,7 +287,11 @@ const Slider = props => {
         </SlideContent>
       </div>
 
-      <Dots activeIndex={activeIndex} dotJump={index => dotJump(index)} />
+      <Dots
+        carousel={carousel}
+        activeIndex={activeIndex}
+        dotJump={index => dotJump(index)}
+      />
       <Controls handleNext={nextSlide} handlePrev={prevSlide} />
     </div>
   )

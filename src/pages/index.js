@@ -18,7 +18,26 @@ export const query = graphql`
     sizes
   }
 
+  fragment contentfulFluis on ContentfulFluid {
+    src
+    srcWebp
+    base64
+    tracedSVG
+  }
+
   query {
+    allContentfulPhotoGallery {
+      edges {
+        node {
+          caption
+          photo {
+            fluid(quality: 90, maxWidth: 700) {
+              ...contentfulFluis
+            }
+          }
+        }
+      }
+    }
     heroImage: file(relativePath: { eq: "img/elvis_backdrop.png" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
@@ -55,6 +74,7 @@ const IndexPage = props => {
         <Hero photo={props.data.heroImage.childImageSharp.fluid} />
 
         <PhotoGallery
+          carousel={props.data.allContentfulPhotoGallery}
           photo={props.data.galleryBgcImage.childImageSharp.fluid}
         />
         <Intro />

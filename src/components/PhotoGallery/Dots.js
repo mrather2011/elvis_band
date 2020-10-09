@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import React from "react"
 import { css, jsx } from "@emotion/core"
-import { testContent } from "./Content"
 
-const Dots = ({ activeIndex, dotJump }) => {
+const Dots = ({ activeIndex, dotJump, carousel }) => {
   const container = css`
     position: absolute;
     bottom: 20px;
@@ -45,7 +44,7 @@ const Dots = ({ activeIndex, dotJump }) => {
 
   return (
     <div css={container}>
-      {Object.keys(testContent).map((object, i) => {
+      {Object.keys(carousel).map((object, i) => {
         return (
           <div
             onClick={() => dotJump(i + 1)}

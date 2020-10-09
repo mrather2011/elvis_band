@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from "react"
 import { css, jsx } from "@emotion/core"
+import Img from "gatsby-image"
 
 const Slide = props => {
   let active = props.activeIndex === props.slideKey
@@ -17,16 +18,14 @@ const Slide = props => {
     text-align: center;
     color: #fff;
 
-    background: url(${props.photo});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    border: 1px solid #fff;
     transition: all 0.5s ease-in-out;
   `
   let Divider = css`
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    z-index: 10;
     border: 1px solid #fff;
   `
 
@@ -39,6 +38,7 @@ const Slide = props => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 999;
     transition: all 0.3s ease-in-out;
 
     &:hover {
@@ -51,9 +51,17 @@ const Slide = props => {
   // console.log("active", props.activeIndex)
   return (
     <div css={mainText}>
+      <Img
+        style={{
+          position: "absolute",
+          height: "100%",
+          width: "100%",
+          top: "0",
+          zIndex: "99",
+        }}
+        fluid={props.photo}
+      />
       <div css={commentary}>
-        <h2>{props.quote}</h2>
-        <h3>{props.author}</h3>
         <p>{props.title}</p>
       </div>
     </div>

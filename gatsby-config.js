@@ -49,6 +49,7 @@ module.exports = {
         specialChars: "/:",
       },
     },
+    "gatsby-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {

@@ -27,7 +27,7 @@ const PhotoGallery = props => {
         <div className={classes.Dash}></div>
         <h1>Photo Gallery</h1>
       </div>
-      <Slider />
+      <Slider carousel={props.carousel} />
     </div>
   )
 }
