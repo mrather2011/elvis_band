@@ -3,12 +3,9 @@
 .Container {
   position: relative;
   top: 0;
-  height: 700px;
+  height: 500px;
   width: 100%;
-  background-image: url("../../img/memphis_recording.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  z-index: 1;
   //   border: 1px solid red;
 }
 

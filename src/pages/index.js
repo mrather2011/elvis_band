@@ -9,33 +9,41 @@ import Book from "../components/Book/Book"
 import PhotoGallery from "../components/PhotoGallery/Container"
 import { graphql, useStaticQuery } from "gatsby"
 
-const IndexPage = props => {
-  // const CHILD_IMG_PARAMS = graphql`
-  //   fragment ChildImageDetails on ImageSharp {
-  //     src
-  //     base64
-  //     tracedSVG
-  //     srcWebp
-  //     sizes
-  //   }
-  // `
+export const query = graphql`
+  fragment fluidDetails on ImageSharpFluid {
+    src
+    base64
+    tracedSVG
+    srcWebp
+    sizes
+  }
 
-  // const queryData = useStaticQuery(graphql`
-  //   query {
-  //     heroImage: file(relativePath: { eq: "img/elvis_backdrop.png" }) {
-  //       childImageSharp {
-  //         fluid(quality: 90, maxWidth: 1920) {
-  //           src
-  //           base64
-  //           tracedSVG
-  //           srcWebp
-  //           sizes
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-  // console.log(queryData)
+  query {
+    heroImage: file(relativePath: { eq: "img/elvis_backdrop.png" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...fluidDetails
+        }
+      }
+    }
+    galleryBgcImage: file(relativePath: { eq: "img/liveCrowd.png" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...fluidDetails
+        }
+      }
+    }
+    testimonialsImage: file(relativePath: { eq: "img/guitar.png" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...fluidDetails
+        }
+      }
+    }
+  }
+`
+
+const IndexPage = props => {
   return (
     <div>
       <Layout
@@ -44,11 +52,15 @@ const IndexPage = props => {
         footerPosition={"relative"}
       >
         <Head title={"Home"} />
-        <Hero />
+        <Hero photo={props.data.heroImage.childImageSharp.fluid} />
 
-        <PhotoGallery />
+        <PhotoGallery
+          photo={props.data.galleryBgcImage.childImageSharp.fluid}
+        />
         <Intro />
-        <Testimonials />
+        <Testimonials
+          photo={props.data.testimonialsImage.childImageSharp.fluid}
+        />
         <Book />
       </Layout>
     </div>

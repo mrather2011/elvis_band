@@ -28,6 +28,7 @@ const Footer = ({ position, place }) => {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    z-index: 99;
     // border: 1px solid red;
 
     p {

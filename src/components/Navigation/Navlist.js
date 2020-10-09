@@ -9,8 +9,6 @@ const Navlist = ({ navScroll, sideDrawerOpen, location }) => {
 
   let active = navScroll ? classes.ActiveLinkDark : classes.ActiveLink
 
-  console.log(pathname)
-
   return (
     <div className={classes.Link}>
       <ul>

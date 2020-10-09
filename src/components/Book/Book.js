@@ -50,7 +50,7 @@ const Book = props => {
           </div>
         </form>
         <div className={classes.FormAction}>
-          <h1>Reach out to discuss playing at your venue</h1>
+          <h1>The King wants to perform for you</h1>
         </div>
       </div>
     </div>

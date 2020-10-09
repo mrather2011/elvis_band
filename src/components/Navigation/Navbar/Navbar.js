@@ -17,6 +17,11 @@ const Navbar = ({ navScroll, location }) => {
 
   return (
     <div
+      style={
+        location.pathname === "/about" && !navScroll
+          ? { background: "#fff" }
+          : null
+      }
       className={[classes.Container, navScroll && classes.ContainerScroll].join(
         " "
       )}
