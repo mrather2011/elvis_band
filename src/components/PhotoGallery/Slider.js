@@ -10,7 +10,7 @@ import Sidebar from "./Sidebar"
 
 const Slider = props => {
   let carousel = props.carousel.edges
-  console.log(carousel)
+
   let container = css`
     position: relative;
     top: 0px;

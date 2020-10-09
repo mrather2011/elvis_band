@@ -13,6 +13,20 @@ export const query = graphql`
   }
 
   query {
+    allContentfulSongs {
+      edges {
+        node {
+          songName
+          track {
+            file {
+              url
+            }
+            id
+          }
+          fileType
+        }
+      }
+    }
     musicImage: file(relativePath: { eq: "img/SolidGuitar.png" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
@@ -24,7 +38,6 @@ export const query = graphql`
 `
 
 const MusicPage = props => {
-  console.log(props.data)
   return (
     <div>
       <Layout
@@ -32,7 +45,10 @@ const MusicPage = props => {
         footerPlace={"top: 0"}
         footerPosition={"relative"}
       >
-        <Music photo={props.data.musicImage.childImageSharp.fluid} />
+        <Music
+          audioTrackList={props.data.allContentfulSongs.edges}
+          photo={props.data.musicImage.childImageSharp.fluid}
+        />
       </Layout>
     </div>
   )

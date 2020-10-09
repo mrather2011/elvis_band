@@ -1,12 +1,8 @@
-p {
-  font-size: 1.3rem;
-  line-height: 2;
-}
-
 .Container {
+  padding-top: 100px;
   position: relative;
   top: 0;
-  height: 1200px;
+  height: 1300px;
   width: 100%;
   z-index: 99;
   background: #fff;
@@ -77,6 +73,11 @@ p {
     justify-content: flex-start;
     align-items: flex-end;
 
+    p {
+      font-size: 1.3rem;
+      line-height: 2;
+    }
+
     h1,
     p {
       //   text-align: right;
@@ -122,6 +123,12 @@ p {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+
+    p {
+      font-size: 1.3rem;
+      line-height: 2;
+    }
+
     h1,
     p {
       //   text-align: right;

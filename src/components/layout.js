@@ -19,7 +19,7 @@ const Layout = props => {
   }
 
   return (
-    <div>
+    <div style={{ boxSizing: "border-box", margin: "0", padding: "0" }}>
       <Navbar location={props.location} navScroll={navScroll} />
       {props.children}
       <Footer position={props.footerPosition} place={props.footerPlace} />

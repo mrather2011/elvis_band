@@ -10,6 +10,7 @@ const Navbar = ({ navScroll, location }) => {
   //   let logo = navScroll ? lightLogo : logoImg
 
   const [sideDrawerOpen, toggleSideDrawer] = useState(false)
+  const [activePage, setActivePage] = useState(false)
 
   const sideDrawerToggle = () => {
     toggleSideDrawer(!sideDrawerOpen)
@@ -17,11 +18,6 @@ const Navbar = ({ navScroll, location }) => {
 
   return (
     <div
-      style={
-        location.pathname === "/about" && !navScroll
-          ? { background: "#fff" }
-          : null
-      }
       className={[classes.Container, navScroll && classes.ContainerScroll].join(
         " "
       )}

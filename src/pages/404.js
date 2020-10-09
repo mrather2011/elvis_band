@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import { Link } from "gatsby"
 
 const NotFound = props => {
+  console.log(props)
   return (
     <Layout>
       <p>

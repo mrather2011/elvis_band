@@ -4,6 +4,7 @@ import Head from "../components/head"
 import History from "../components/History/History"
 import Experience from "../components/Experience/Experience"
 import Book from "../components/Book/Book"
+import { graphql } from "gatsby"
 
 export const query = graphql`
   fragment fluidDetails on ImageSharpFluid {
@@ -48,14 +49,7 @@ const AboutPage = props => {
         footerPosition={"relative"}
       >
         <Head title={"Home"} />
-        <div
-          style={{
-            display: "relative",
-            top: "0",
-            height: "100px",
-            // border: "1px solid blue",
-          }}
-        ></div>
+
         <History
           photo={props.data.historyOne.childImageSharp.fluid}
           photoTwo={props.data.historyTwo.childImageSharp.fluid}
