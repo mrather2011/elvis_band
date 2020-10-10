@@ -9,6 +9,18 @@
   z-index: 999;
 }
 
+.Backdrop {
+  @include for-breakpoint-1040 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
 .TextContainer {
   padding: 0 100px;
   position: relative;
@@ -21,10 +33,6 @@
   justify-content: flex-start;
   align-items: center;
   // border: 1px solid red;
-
-  @include for-breakpoint-1040 {
-    background: rgba(0, 0, 0, 0.7);
-  }
 
   @include for-breakpoint-640 {
     padding: 0 50px;

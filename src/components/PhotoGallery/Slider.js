@@ -71,19 +71,25 @@ const Slider = props => {
   })
 
   useEffect(() => {
-    setState({
-      ...state,
-      containerWidth: sliderContainer.current.offsetWidth / divider,
-      translateWidth: sliderContainer.current.offsetWidth / divider,
-      initialTranslateWidth:
-        sliderContainer.current.offsetWidth / divider / divider +
-        sliderContainer.current.offsetWidth / divider,
-      translate:
-        sliderContainer.current.offsetWidth / divider / divider +
-        sliderContainer.current.offsetWidth / divider,
-      // translate: 0,
-    })
-  }, [breakpointDivider])
+    const windowResize = () => {
+      setState({
+        ...state,
+        containerWidth: sliderContainer.current.offsetWidth / divider,
+        translateWidth: sliderContainer.current.offsetWidth / divider,
+        initialTranslateWidth:
+          sliderContainer.current.offsetWidth / divider / divider +
+          sliderContainer.current.offsetWidth / divider,
+        translate:
+          sliderContainer.current.offsetWidth / divider / divider +
+          sliderContainer.current.offsetWidth / divider,
+
+        // translate: 0,
+      })
+
+      window.addEventListener("resize", windowResize)
+    }
+    windowResize()
+  }, [])
 
   const {
     jump,

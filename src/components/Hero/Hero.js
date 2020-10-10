@@ -18,6 +18,7 @@ const Hero = props => {
 
   return (
     <div className={classes.Container}>
+      <div className={classes.Backdrop}></div>
       <BackgroundImage
         tag="section"
         className={classes.Image}
@@ -42,8 +43,6 @@ const Hero = props => {
           </div>
         </div>
       </div>
-
-      {/* <div className={classes.Image}></div> */}
     </div>
   )
 }

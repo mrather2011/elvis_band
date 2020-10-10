@@ -21,6 +21,7 @@ import {
 const MusicPlayer = (props, { top }) => {
   let progressElement = useRef()
   let audio = useRef()
+
   const [inPlay, setInPlay] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -30,6 +31,7 @@ const MusicPlayer = (props, { top }) => {
   const [mediaType, setMediaType] = useState("audio")
   const [showSpinner, setShowSpinner] = useState(true)
   const [showSongList, setShowSongList] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(null)
 
   let audioList = props.audioTrackList
 
@@ -53,6 +55,22 @@ const MusicPlayer = (props, { top }) => {
   let stopBtn = <FaStop />
 
   let displayTime
+
+  useEffect(() => {
+    audio.current.removeAttribute("controls")
+  }, [])
+
+  const windowResize = () => {
+    setWindowWidth(window.innerWidth)
+
+    window.addEventListener("resize", windowResize)
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      windowResize()
+    }
+  }, [windowWidth])
 
   const trackSelector = async id => {
     if (mediaType === "audio") {
@@ -248,7 +266,6 @@ const MusicPlayer = (props, { top }) => {
     top: 150px;
     z-index: 99;
     transition: all 1s ease-in-out;
-    border: 1px solid red;
 
     video {
       position: absolute;
@@ -539,7 +556,6 @@ const MusicPlayer = (props, { top }) => {
   return (
     <div css={musicCss}>
       <video
-        oncontextmenu="return false;"
         ref={audio}
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
         onDurationChange={() => setDuration(audio.current.duration)}
