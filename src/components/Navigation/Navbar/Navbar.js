@@ -12,17 +12,19 @@ const Navbar = ({ navScroll, location }) => {
   const [sideDrawerOpen, toggleSideDrawer] = useState(false)
   const [darkPage, setDarkPage] = useState(true)
 
-  if (
-    (!darkPage && location.pathname === "/") ||
-    (!darkPage && location.pathname === "/music") ||
-    (!darkPage && location.pathname === "/calendar")
-  ) {
-    setDarkPage(true)
-  } else if (
-    (darkPage && location.pathname === "/about") ||
-    (darkPage && location.pathname === "/contact")
-  ) {
-    setDarkPage(false)
+  if (location.pathname) {
+    if (
+      (!darkPage && location.pathname === "/") ||
+      (!darkPage && location.pathname === "/music") ||
+      (!darkPage && location.pathname === "/calendar")
+    ) {
+      setDarkPage(true)
+    } else if (
+      (darkPage && location.pathname === "/about") ||
+      (darkPage && location.pathname === "/contact")
+    ) {
+      setDarkPage(false)
+    }
   }
 
   console.log("dark page?", darkPage)
