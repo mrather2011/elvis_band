@@ -18,7 +18,11 @@ const Slider = props => {
   let carousel = props.carousel.edges
 
   // Breakpoint logic for slider styling
-  let breakpointDivider = window.innerWidth < breakpoint780 ? 1 : 2
+  let breakpointDivider = 2
+
+  if (typeof window !== "undefined") {
+    breakpointDivider = window.innerWidth < breakpoint780 ? 1 : 2
+  }
 
   let container = css`
     position: relative;
