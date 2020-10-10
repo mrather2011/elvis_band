@@ -13,6 +13,20 @@ export const query = graphql`
   }
 
   query {
+    allContentfulCalendar {
+      edges {
+        node {
+          showDate
+          showLocation {
+            lon
+            lat
+          }
+          showPrice
+          name
+          id
+        }
+      }
+    }
     calendarImage: file(relativePath: { eq: "img/livebandII.png" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
@@ -31,7 +45,10 @@ const CalendarPage = props => {
         footerPlace={"top: 0"}
         footerPosition={"relative"}
       >
-        <Calendar photo={props.data.calendarImage.childImageSharp.fluid} />
+        <Calendar
+          showData={props.data.allContentfulCalendar.edges}
+          photo={props.data.calendarImage.childImageSharp.fluid}
+        />
       </Layout>
     </div>
   )

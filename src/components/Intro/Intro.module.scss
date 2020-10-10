@@ -1,4 +1,5 @@
 @import "../../globalStyles/colors";
+@import "../../globalStyles/breakpoints";
 
 .Container {
   position: relative;
@@ -18,16 +19,47 @@
   align-items: center;
   //   border: 1px solid black;
 
+  @include for-breakpoint-500 {
+    padding: 0 50px;
+  }
+
+  @include for-breakpoint-400 {
+    padding: 0 20px;
+  }
+
+  @include for-breakpoint-780 {
+    text-align: center;
+  }
+
   h1 {
     margin: 15px 0;
     font-family: "Baddest";
     font-size: 3rem;
     letter-spacing: 5px;
+
+    @include for-breakpoint-500 {
+      font-size: 2.5rem;
+    }
+
+    @include for-breakpoint-400 {
+      font-size: 2rem;
+    }
+
+    @include for-breakpoint-300 {
+      font-size: 1.5rem;
+    }
   }
 
   p {
     margin: 15px 0;
     font-size: 1.5rem;
+    @include for-breakpoint-500 {
+      font-size: 1.2rem;
+    }
+
+    @include for-breakpoint-500 {
+      font-size: 1rem;
+    }
   }
 
   button {
@@ -41,6 +73,11 @@
     cursor: pointer;
     border-radius: 25px;
     transition: all 0.3s ease-in-out;
+
+    @include for-breakpoint-500 {
+      height: 50px;
+      width: 175px;
+    }
   }
 
   button:hover {

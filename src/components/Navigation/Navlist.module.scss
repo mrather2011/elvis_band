@@ -75,17 +75,3 @@
     color: $green-blue-crayola;
   }
 }
-
-@media screen and (max-width: 1000px) {
-  .Link {
-    height: 70%;
-    border: 5px solid blue;
-
-    ul {
-      li,
-      .ActiveLink {
-        padding: 20px 60px;
-      }
-    }
-  }
-}

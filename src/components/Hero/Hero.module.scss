@@ -1,4 +1,5 @@
 @import "../../globalStyles/colors";
+@import "../../globalStyles/breakpoints";
 
 .Container {
   position: relative;
@@ -19,7 +20,15 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  //   border: 1px solid red;
+  // border: 1px solid red;
+
+  @include for-breakpoint-640 {
+    padding: 0 50px;
+  }
+
+  @include for-breakpoint-400 {
+    top: 150px;
+  }
 }
 
 .Dash {
@@ -31,6 +40,11 @@
   background: $timberwolf;
   border-radius: 25px;
   z-index: 99;
+
+  @include for-breakpoint-640 {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .Text {
@@ -40,13 +54,26 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  //   border: 1px solid blue;
+  // border: 1px solid blue;
+
+  @include for-breakpoint-640 {
+    align-items: center;
+    text-align: center;
+  }
 
   h1 {
     font-size: 3rem;
     font-family: "Baddest";
     word-spacing: 5px;
     letter-spacing: 5px;
+
+    @include for-breakpoint-640 {
+      font-size: 2.5rem;
+    }
+
+    @include for-breakpoint-400 {
+      font-size: 2rem;
+    }
   }
 
   h2 {
@@ -56,6 +83,23 @@
     word-spacing: 5px;
     letter-spacing: 5px;
     color: $timberwolf;
+
+    @include for-breakpoint-1280 {
+      width: 70%;
+    }
+
+    @include for-breakpoint-780 {
+      width: 100%;
+      font-size: 1.7rem;
+    }
+
+    @include for-breakpoint-640 {
+      font-size: 1.4rem;
+    }
+
+    @include for-breakpoint-640 {
+      font-size: 1rem;
+    }
   }
   h1,
   p {
@@ -64,12 +108,19 @@
   }
 
   div {
+    // border: 1px solid red;
+
     button {
       height: 75px;
       width: 175px;
       font-size: 1.2rem;
       cursor: pointer;
       border-radius: 50px;
+
+      @include for-breakpoint-780 {
+        height: 50px;
+        width: 150px;
+      }
     }
 
     button:focus {
@@ -83,6 +134,10 @@
         color: $timberwolf;
         margin-right: 50px;
         transition: all 0.3s ease-in-out;
+
+        @include for-breakpoint-640 {
+          margin: 20px;
+        }
       }
     }
 
@@ -101,6 +156,9 @@
         border: 1px solid black;
         margin-right: 50px;
         transition: all 0.3s ease-in-out;
+        @include for-breakpoint-640 {
+          margin: 20px;
+        }
       }
     }
 

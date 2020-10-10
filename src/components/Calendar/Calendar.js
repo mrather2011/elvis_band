@@ -1,6 +1,7 @@
 import React from "react"
 import classes from "./Calendar.module.scss"
 import BackgroundImage from "gatsby-background-image"
+import moment from "moment"
 
 const Calendar = props => {
   return (
@@ -27,48 +28,37 @@ const Calendar = props => {
         <div></div>
       </div>
       <div className={classes.Calendar}>
-        <div className={classes.Example}>
-          <p>
-            Date 1: <span>Example</span>
-          </p>
-          <p>
-            Location: <span>Example</span>
-          </p>
-          <p>
-            Time: <span>Example</span>
-          </p>
-          <p>
-            Price: <span>Example</span>
-          </p>
-        </div>
-        <div className={classes.Example}>
-          <p>
-            Date 2: <span>Example</span>
-          </p>
-          <p>
-            Location: <span>Example</span>
-          </p>
-          <p>
-            Time: <span>Example</span>
-          </p>
-          <p>
-            Price: <span>Example</span>
-          </p>
-        </div>
-        <div className={classes.Example}>
-          <p>
-            Date 3: <span>Example</span>
-          </p>
-          <p>
-            Location: <span>Example</span>
-          </p>
-          <p>
-            Time: <span>Example</span>
-          </p>
-          <p>
-            Price: <span>Example</span>
-          </p>
-        </div>
+        {props.showData.map((event, i) => {
+          let dateTime = event.node.showDate
+
+          dateTime = moment(dateTime).format("MMM Do YYYY, h:mm a")
+          let dateStr = dateTime.substr(0, dateTime.indexOf(","))
+          let timeStr = dateTime.substr(
+            dateTime.indexOf(",") + 1,
+            dateTime.length
+          )
+
+          return (
+            <div key={event.node.id} className={classes.Example}>
+              <p>
+                <span>{event.node.name}</span>
+              </p>
+              <p>
+                <span>{dateStr}</span>
+              </p>
+              <p>
+                <span>{timeStr}</span>
+              </p>
+              <p>
+                <span>Location</span>
+              </p>
+
+              <p>
+                <span>{`$${event.node.showPrice}`}</span>
+              </p>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

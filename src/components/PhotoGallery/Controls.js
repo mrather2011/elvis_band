@@ -2,8 +2,18 @@
 import React from "react"
 import { css, jsx } from "@emotion/core"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
+import {
+  breakpoint780,
+  breakpoint640,
+  breakpoint500,
+  breakpoint400,
+  breakpoint300,
+} from "../../globalStyles/breakpoints"
 
 const Controls = ({ handleNext, handlePrev }) => {
+  // Breakpoint logic for styling of control buttons
+  let buttonDimension = window.innerHeight < breakpoint400 ? 30 : 70
+
   let controls = css`
     position: absolute;
     top: 50%;
@@ -20,8 +30,8 @@ const Controls = ({ handleNext, handlePrev }) => {
 
     div {
       margin: 0 20px;
-      height: 70px;
-      width: 70px;
+      height: ${buttonDimension}px;
+      width: ${buttonDimension}px;
       border-radius: 50%;
       cursor: pointer;
       border: 1px solid #fff;

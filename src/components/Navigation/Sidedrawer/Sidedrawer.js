@@ -1,5 +1,5 @@
 import React from "react"
-import { FaRedo } from "react-icons/fa"
+import { ImCancelCircle } from "react-icons/im"
 import Navlist from "../Navlist"
 import classes from "./Sidedrawer.module.scss"
 
@@ -24,7 +24,7 @@ const SideDrawer = ({ sDOpen, toggleSideDrawer }) => {
             sDOpen ? classes.NavItemsOpen : classes.NavItemsClosed,
           ].join(" ")}
         >
-          <FaRedo onClick={toggleSideDrawer} size="3rem" />
+          <ImCancelCircle onClick={toggleSideDrawer} size="3rem" />
           <Navlist />
         </div>
       </div>

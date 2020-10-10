@@ -1,3 +1,5 @@
+@import "../../../globalStyles/breakpoints";
+
 .Container {
   height: 100%;
   width: 100%;
@@ -9,23 +11,23 @@
 }
 
 .ContainerOpen {
-  transform: translateX(0%);
+  transform: translatey(0%);
 }
 
 .ContainerClosed {
-  transform: translateX(-300%);
+  transform: translatey(-300%);
 }
 
 .NavItems {
   position: fixed;
-  height: 100%;
-  width: 50%;
+  height: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background: #fff;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.7s ease-in-out;
   z-index: 9999;
 
   svg {
@@ -51,11 +53,11 @@
 }
 
 .NavItemsOpen {
-  transform: translateX(0%);
+  transform: translatey(0%);
 }
 
 .NavItemsClosed {
-  transform: translateX(-300%);
+  transform: translatey(-300%);
 }
 
 .Backdrop {

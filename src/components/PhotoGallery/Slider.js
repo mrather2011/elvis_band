@@ -6,10 +6,19 @@ import Slide from "./Slide"
 import SlideContent from "./SliderContent"
 import Controls from "./Controls"
 import Dots from "./Dots"
-import Sidebar from "./Sidebar"
+import {
+  breakpoint780,
+  breakpoint640,
+  breakpoint500,
+  breakpoint400,
+  breakpoint300,
+} from "../../globalStyles/breakpoints"
 
 const Slider = props => {
   let carousel = props.carousel.edges
+
+  // Breakpoint logic for slider styling
+  let breakpointDivider = window.innerWidth < breakpoint780 ? 1 : 2
 
   let container = css`
     position: relative;
@@ -53,7 +62,7 @@ const Slider = props => {
     transition: 0.5,
     jump: false,
     slideMargin: 25,
-    divider: 2,
+    divider: breakpointDivider,
     direction: null,
   })
 
@@ -70,7 +79,7 @@ const Slider = props => {
         sliderContainer.current.offsetWidth / divider,
       // translate: 0,
     })
-  }, [])
+  }, [window.innerWidth])
 
   const {
     jump,

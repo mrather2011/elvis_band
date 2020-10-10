@@ -10,7 +10,22 @@ const Navbar = ({ navScroll, location }) => {
   //   let logo = navScroll ? lightLogo : logoImg
 
   const [sideDrawerOpen, toggleSideDrawer] = useState(false)
-  const [activePage, setActivePage] = useState(false)
+  const [darkPage, setDarkPage] = useState(true)
+
+  if (
+    (!darkPage && location.pathname === "/") ||
+    (!darkPage && location.pathname === "/music") ||
+    (!darkPage && location.pathname === "/calendar")
+  ) {
+    setDarkPage(true)
+  } else if (
+    (darkPage && location.pathname === "/about") ||
+    (darkPage && location.pathname === "/contact")
+  ) {
+    setDarkPage(false)
+  }
+
+  console.log("dark page?", darkPage)
 
   const sideDrawerToggle = () => {
     toggleSideDrawer(!sideDrawerOpen)
@@ -23,9 +38,7 @@ const Navbar = ({ navScroll, location }) => {
       )}
     >
       <Sidedrawer toggleSideDrawer={sideDrawerToggle} sDOpen={sideDrawerOpen} />
-      <div className={classes.LogoContainer}>
-        {/* <img alt="Landmark Development" src={logo}></img> */}
-      </div>
+
       <div
         className={[
           classes.ListContainer,
@@ -40,7 +53,7 @@ const Navbar = ({ navScroll, location }) => {
         <div
           className={[
             classes.SideDrawerToggle,
-            navScroll && classes.SideDrawerToggleLight,
+            navScroll || darkPage ? classes.SideDrawerToggleLight : null,
           ].join(" ")}
           onClick={sideDrawerToggle}
         >
