@@ -539,6 +539,7 @@ const MusicPlayer = (props, { top }) => {
   return (
     <div css={musicCss}>
       <video
+        oncontextmenu="return false;"
         ref={audio}
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
         onDurationChange={() => setDuration(audio.current.duration)}

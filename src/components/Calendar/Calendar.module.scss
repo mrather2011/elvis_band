@@ -22,10 +22,14 @@
   justify-content: center;
   align-items: flex-start;
   z-index: 99;
-  //   border: 1px solid #fff;
+  // border: 1px solid #fff;
 
   @include for-breakpoint-780 {
     padding: 0 50px;
+  }
+
+  @include for-breakpoint-640 {
+    align-items: center;
   }
 
   h1 {
@@ -39,13 +43,12 @@
     @include for-breakpoint-custom("905px") {
       font-size: 2.5rem;
     }
+    @include for-breakpoint-640 {
+      text-align: center;
+    }
 
     @include for-breakpoint-500 {
       font-size: 2rem;
-    }
-
-    @include for-breakpoint-400 {
-      text-align: center;
     }
   }
 }
@@ -71,7 +74,7 @@
   justify-content: center;
   align-items: flex-end;
   z-index: 99;
-  //   border: 1px solid #fff;
+  // border: 1px solid #fff;
 
   @include for-breakpoint-1040 {
     align-items: flex-start;
@@ -79,6 +82,10 @@
 
   @include for-breakpoint-780 {
     padding: 0 50px;
+  }
+
+  @include for-breakpoint-640 {
+    align-items: center;
   }
 
   h1 {
@@ -132,8 +139,10 @@
   }
 
   @include for-breakpoint-640 {
+    padding: 0;
     min-width: 0;
-    width: calc(100% - 50px);
+    left: 0;
+    width: 100%;
   }
 }
 
