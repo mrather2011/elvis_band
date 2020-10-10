@@ -8,7 +8,7 @@
   width: 100%;
   z-index: 99;
   background: #fff;
-  border: 1px solid red;
+  // border: 1px solid red;
 
   @include for-breakpoint-780 {
     height: 900px;
@@ -65,7 +65,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   @include for-breakpoint-780 {
     height: 250px;
@@ -155,7 +155,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   @include for-breakpoint-780 {
     height: 250px;

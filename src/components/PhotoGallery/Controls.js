@@ -12,7 +12,10 @@ import {
 
 const Controls = ({ handleNext, handlePrev }) => {
   // Breakpoint logic for styling of control buttons
-  let buttonDimension = window.innerHeight < breakpoint400 ? 30 : 70
+  let buttonDimension = 70
+  if (typeof window !== "undefined") {
+    buttonDimension = window.innerHeight < breakpoint400 ? 30 : 70
+  }
 
   let controls = css`
     position: absolute;

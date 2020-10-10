@@ -9,7 +9,7 @@ const Hero = props => {
       <BackgroundImage
         tag="section"
         className={classes.Image}
-        style={{ position: "absolute" }}
+        style={{ position: "absolute", backgroundPosition: "right" }}
         fluid={props.photo}
       ></BackgroundImage>
       <div className={classes.TextContainer}>

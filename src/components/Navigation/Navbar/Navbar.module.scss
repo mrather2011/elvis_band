@@ -30,7 +30,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  // border: 1px solid red;
 
   @include for-breakpoint-1280 {
     width: 70%;
