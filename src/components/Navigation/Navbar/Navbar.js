@@ -27,8 +27,6 @@ const Navbar = ({ navScroll, location }) => {
     }
   }
 
-  console.log("dark page?", darkPage)
-
   const sideDrawerToggle = () => {
     toggleSideDrawer(!sideDrawerOpen)
   }

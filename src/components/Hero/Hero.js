@@ -2,14 +2,29 @@ import React from "react"
 import classes from "./Hero.module.scss"
 import BackgroundImage from "gatsby-background-image"
 import { Link } from "gatsby"
+import {
+  breakpoint780,
+  breakpoint640,
+  breakpoint500,
+  breakpoint400,
+  breakpoint300,
+} from "../../globalStyles/breakpoints"
 
 const Hero = props => {
+  let shift = "right"
+  if (typeof window !== "undefined") {
+    shift = window.innerWidth < breakpoint500 ? "85%" : "right"
+  }
+
   return (
     <div className={classes.Container}>
       <BackgroundImage
         tag="section"
         className={classes.Image}
-        style={{ position: "absolute", backgroundPosition: "right" }}
+        style={{
+          position: "absolute",
+          backgroundPosition: shift,
+        }}
         fluid={props.photo}
       ></BackgroundImage>
       <div className={classes.TextContainer}>

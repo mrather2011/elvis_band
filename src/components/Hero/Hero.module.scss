@@ -22,8 +22,16 @@
   align-items: center;
   // border: 1px solid red;
 
+  @include for-breakpoint-1040 {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
   @include for-breakpoint-640 {
     padding: 0 50px;
+  }
+
+  @include for-breakpoint-500 {
+    height: 500px;
   }
 
   @include for-breakpoint-400 {
@@ -71,7 +79,7 @@
       font-size: 2.5rem;
     }
 
-    @include for-breakpoint-400 {
+    @include for-breakpoint-500 {
       font-size: 2rem;
     }
   }

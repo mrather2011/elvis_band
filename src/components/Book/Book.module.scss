@@ -23,8 +23,8 @@
     height: 800px;
   }
 
-  @include for-breakpoint-300 {
-    padding: 0 20px;
+  @include for-breakpoint-400 {
+    padding: 20px;
   }
 }
 
@@ -62,6 +62,10 @@
   @include for-breakpoint-custom("961px") {
     flex-direction: column-reverse;
     height: calc(100% - 100px);
+  }
+
+  @include for-breakpoint-400 {
+    height: calc(100% - 150px);
   }
 
   form {

@@ -54,14 +54,14 @@
   justify-content: center;
   align-items: flex-start;
   z-index: 99;
-  border: 1px solid $timberwolf;
+  // border: 1px solid $timberwolf;
 
   @include for-breakpoint-1040 {
     padding: 0 50px;
   }
 
   @include for-breakpoint-780 {
-    padding: 0 20px;
+    padding: 20px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
