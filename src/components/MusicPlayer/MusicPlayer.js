@@ -3,12 +3,20 @@ import React, { useRef, useState, useEffect } from "react"
 import { css, jsx } from "@emotion/core"
 import { colors } from "../../globalStyles/colors"
 import Spinner from "../util/Spinner"
-
 import video1 from "../../../static/vidoes/A Fan Favorite from York Days 2017.mp4"
 import video2 from "../../../static/vidoes/American Trilogy.mp4"
 import video3 from "../../../static/vidoes/Burning Love by J C  & The Elvis Experience 2020.mp4"
 import video4 from "../../../static/vidoes/JC & the Elvis Experience All Shook Up at The Levitt Theatre.mp4"
 import { FaPlay, FaPause, FaForward, FaBackward, FaStop } from "react-icons/fa"
+import {
+  breakpoint1280,
+  breakpoint1040,
+  breakpoint780,
+  breakpoint640,
+  breakpoint500,
+  breakpoint400,
+  breakpoint300,
+} from "../../globalStyles/breakpoints"
 
 const MusicPlayer = (props, { top }) => {
   let progressElement = useRef()
@@ -18,8 +26,10 @@ const MusicPlayer = (props, { top }) => {
   const [duration, setDuration] = useState(0)
   const [barDimensions, setBarDimensions] = useState(0)
   const [currTrack, setCurrTrack] = useState(0)
+
   const [mediaType, setMediaType] = useState("audio")
   const [showSpinner, setShowSpinner] = useState(true)
+  const [showSongList, setShowSongList] = useState(false)
 
   let audioList = props.audioTrackList
 
@@ -52,6 +62,7 @@ const MusicPlayer = (props, { top }) => {
       let indexNumber = idIndex.indexOf(id)
 
       setCurrTrack(indexNumber)
+
       audio.current.pause()
 
       await audio.current.load()
@@ -166,7 +177,6 @@ const MusicPlayer = (props, { top }) => {
   }
 
   let formattedTime = `${minutes}:${seconds}`
-  let playerHeight = mediaType === "audio" ? "100" : "450"
 
   const progressBar = css`
     cursor: pointer;
@@ -196,16 +206,43 @@ const MusicPlayer = (props, { top }) => {
     color: ${colors.timberwolf};
   `
 
+  let containerWidth = "60%"
+  let musicPadding = "100"
+  let playerHeightAudio = "100"
+  let playerHeightVideo = "450"
+
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint1280) {
+      containerWidth = "50%"
+    }
+    if (window.innerWidth < breakpoint1040) {
+      containerWidth = `calc(100% - ${musicPadding}px)`
+    }
+    if (window.innerWidth < breakpoint780) {
+      musicPadding = "50"
+    }
+    if (window.innerWidth < breakpoint640) {
+      playerHeightAudio = "150"
+    }
+    if (window.innerWidth < breakpoint500) {
+      musicPadding = "20"
+      containerWidth = `calc(100% - ${musicPadding}px * 2)`
+    }
+  }
+
+  let playerHeight =
+    mediaType === "audio" ? playerHeightAudio : playerHeightVideo
   let videoBorder = mediaType === "audio" ? null : "1px solid #fff"
   const musicCss = css`
-    margin: 0 100px;
+    left: ${musicPadding}px;
     padding: 0 20px;
     position: relative;
     height: ${playerHeight}px;
-    width: 60%;
+    width: ${containerWidth};
     top: 150px;
-    z-index: 999;
+    z-index: 99;
     transition: all 1s ease-in-out;
+    border: 1px solid red;
 
     video {
       position: absolute;
@@ -222,12 +259,23 @@ const MusicPlayer = (props, { top }) => {
     }
   `
 
+  let songDetailY
+  let songDetailx = "right: 25px;"
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint640) {
+      songDetailY = "top: 0;"
+      songDetailx = "left: 0"
+    }
+    if (window.innerWidth < breakpoint400) {
+      songDetailx = "right: 0"
+    }
+  }
   const songDetail = css`
     position: absolute;
-    right: 25px;
+    ${songDetailY}
+    ${songDetailx}
     z-index: 999;
     p {
-      mix-blend-mode: difference;
       font-size: 1.5rem;
       color: black;
     }
@@ -237,9 +285,40 @@ const MusicPlayer = (props, { top }) => {
     }
   `
 
+  let buttonDimension = "50"
+  let buttonFontSize = "1rem"
+  let buttonMarginRight = "30px"
+  let controlsFlex = `display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;`
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint640) {
+      controlsFlex = `
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+    `
+    }
+    if (window.innerWidth < breakpoint500) {
+      buttonDimension = "40"
+    }
+
+    if (window.innerWidth < breakpoint500) {
+      buttonDimension = "35"
+      buttonFontSize = "0.8rem"
+    }
+    if (window.innerWidth < breakpoint500) {
+      buttonFontSize = "0.6rem"
+    }
+    if (window.innerWidth < breakpoint400) {
+      buttonMarginRight = "15px"
+    }
+  }
   const controls = css`
-    padding: 0 25px;
-    height: 100px;
+    padding: 25px;
+    height: 100%;
     width: 100%;
     position: absolute;
     left: 0;
@@ -250,21 +329,18 @@ const MusicPlayer = (props, { top }) => {
     background: rgba(255, 255, 255, 0.7);
 
     z-index: 99;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    ${controlsFlex}
 
     div:nth-of-type(1),
     div:nth-of-type(2),
     div:nth-of-type(3),
     div:nth-of-type(4) {
       cursor: pointer;
-      height: 50px;
-      width: 50px;
+      height: ${buttonDimension}px;
+      width: ${buttonDimension}px;
       border: 1px solid black;
       border-radius: 50%;
-      margin-right: 30px;
+      margin-right: ${buttonMarginRight};
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -273,6 +349,7 @@ const MusicPlayer = (props, { top }) => {
 
       svg {
         color: black;
+        font-size: ${buttonFontSize};
       }
     }
 
@@ -288,10 +365,18 @@ const MusicPlayer = (props, { top }) => {
       }
     }
   `
+
   let mediaPosition = mediaType === "audio" ? "-60" : "0"
+  let mediaWith = "400px"
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint500) {
+      mediaWith = "100%"
+    }
+  }
+
   const media = css`
     height: 50px;
-    width: 300px;
+    width: ${mediaWith};
     position: absolute;
     bottom: ${mediaPosition}px;
     left: 0;
@@ -303,54 +388,90 @@ const MusicPlayer = (props, { top }) => {
     transition: all 1s ease-in-out;
 
     div {
-      margin: 0;
+      margin: 0 5px;
       padding: 0;
-      width: 50%;
+      width: 33%;
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      border: 1px solid #fff;
+
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        background: #fff;
+        background: rgba(255, 255, 255, 0.7);
         color: black;
         transform: scale(1.1);
-        border: 1px solid black;
+
         transition: all 0.3s ease-in-out;
       }
     }
   `
 
   const active = css`
-    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
     color: black;
     transition: all 0.3s ease-in-out;
     transform: scale(1.1);
   `
-  const timePosition = mediaType === "audio" ? "-75" : "-25"
+
+  const inActive = css`
+    background: rgba(0, 0, 0, 0.7);
+  `
+  let timePositionY =
+    mediaType === "audio" ? "bottom: -75px;" : "bottom: -25px;"
+  let timePositionX = "right: 25px;"
+  let timePositionBackground = "background: rgba(0, 0, 0, 0.7);"
+  let timePositionColor = "#fff"
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint640) {
+      timePositionY = "top: 10px;"
+      timePositionX = "left: 20px;"
+      timePositionBackground = "transparent"
+      timePositionColor = "black"
+    }
+  }
   const timeCounter = css`
+    z-index: 999;
     position: absolute;
-    bottom: ${timePosition}px;
-    right: 25px;
-    color: ${colors.timberwolf};
+    ${timePositionY}
+    ${timePositionX}
+    color: ${timePositionColor};
+    ${timePositionBackground};
     transition: all 1s ease-in-out;
   `
 
+  let trackListHeight = showSongList ? "500" : "0"
+  let trackListOpacity = showSongList ? "1" : "0"
+  let trackListPosition = "absolute"
+  let trackListY = "top: -25px"
+  let trackListX = "right: -350px"
+  let trackListZIndex = "999"
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint1040) {
+      trackListPosition = "fixed"
+      trackListY = "top: 25%; transform: translatey(-100%);"
+      trackListX = "left: 50%; transform: translatex(-50%)"
+      trackListZIndex = "99999"
+    }
+  }
   const trackNames = css`
     padding: 0 15px;
-    position: absolute;
-    top: -25px;
-    right: -350px;
-    height: 500px;
+    position: ${trackListPosition};
+    ${trackListY};
+    ${trackListX};
+    height: ${trackListHeight}px;
+    opacity: ${trackListOpacity};
     width: 300px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.9);
+    z-index: ${trackListZIndex};
+
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    transition: all 0.7s ease-in-out;
 
     &::-webkit-scrollbar {
       display: none;
@@ -364,6 +485,7 @@ const MusicPlayer = (props, { top }) => {
       justify-content: space-between;
 
       li {
+        color: #fff;
         padding: 15px 25px;
         font-size: 1.3rem;
         cursor: pointer;
@@ -376,6 +498,28 @@ const MusicPlayer = (props, { top }) => {
         transition: all 0.3s ease-in-out;
       }
     }
+  `
+
+  const activeTrack = css`
+    color: ${colors.greenBlueCrayola};
+  `
+
+  let backdropColor = "transparent"
+  let backdropZIndex = "10"
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < breakpoint1040) {
+      backdropColor = "rgba(0,0,0,0.8)"
+      backdropZIndex = "9999"
+    }
+  }
+  const backdrop = css`
+    position: fixed;
+    top: 0px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: ${backdropColor};
+    z-index: ${backdropZIndex};
   `
 
   return (
@@ -411,25 +555,33 @@ const MusicPlayer = (props, { top }) => {
       </div>
       <div css={media}>
         <div
+          onClick={() => setShowSongList(!showSongList)}
+          css={showSongList ? active : inActive}
+        >
+          Song List
+        </div>
+        <div
           onClick={() => switchMedia("audio")}
-          css={mediaType === "audio" && active}
+          css={mediaType === "audio" ? active : inActive}
         >
           Audio
         </div>
         <div
           onClick={() => switchMedia("video")}
-          css={mediaType === "video" && active}
+          css={mediaType === "video" ? active : inActive}
         >
           Video
         </div>
       </div>
       <p css={timeCounter}>{formattedTime}</p>
+
       <div css={trackNames}>
         <ol>
           {trackList.map((track, i) => {
             if (mediaType === "audio") {
               return (
                 <li
+                  css={i === currTrack ? activeTrack : null}
                   onClick={() => trackSelector(track.node.track.id)}
                   key={track.node.track.id}
                 >
@@ -440,6 +592,12 @@ const MusicPlayer = (props, { top }) => {
           })}
         </ol>
       </div>
+      <div
+        onClick={() => {
+          setShowSongList(!showSongList)
+        }}
+        css={showSongList ? backdrop : null}
+      ></div>
     </div>
   )
 }

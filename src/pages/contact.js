@@ -7,8 +7,8 @@ const ContactPage = props => {
     <div>
       <Layout
         location={props.location}
-        footerPlace={"bottom: 0"}
-        footerPosition={"absolute"}
+        footerPlace={"top: 0"}
+        footerPosition={"relative"}
       >
         <div
           style={{
