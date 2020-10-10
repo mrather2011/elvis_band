@@ -12,7 +12,7 @@ const Navbar = ({ navScroll, location }) => {
   const [sideDrawerOpen, toggleSideDrawer] = useState(false)
   const [darkPage, setDarkPage] = useState(true)
 
-  if (location.pathname) {
+  if (location) {
     if (
       (!darkPage && location.pathname === "/") ||
       (!darkPage && location.pathname === "/music") ||
