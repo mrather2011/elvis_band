@@ -83,7 +83,7 @@ const Slider = props => {
         sliderContainer.current.offsetWidth / divider,
       // translate: 0,
     })
-  }, [window.innerWidth])
+  }, [breakpointDivider])
 
   const {
     jump,

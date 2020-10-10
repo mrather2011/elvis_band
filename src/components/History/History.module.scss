@@ -1,3 +1,5 @@
+@import "../../globalStyles/breakpoints";
+
 .Container {
   padding-top: 100px;
   position: relative;
@@ -6,7 +8,11 @@
   width: 100%;
   z-index: 99;
   background: #fff;
-  //   border: 1px solid red;
+  border: 1px solid red;
+
+  @include for-breakpoint-780 {
+    height: 900px;
+  }
 }
 
 .HeaderText {
@@ -22,12 +28,20 @@
   align-items: center;
   //   border: 1px solid black;
 
+  @include for-breakpoint-500 {
+    padding: 0 20px;
+  }
+
   h1 {
     margin: 20px 0;
     text-align: center;
     font-family: "Baddest";
     letter-spacing: 5px;
     font-size: 3rem;
+
+    @include for-breakpoint-400 {
+      font-size: 2.5rem;
+    }
   }
 }
 
@@ -51,20 +65,44 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  //   border: 1px solid black;
+  border: 1px solid black;
+
+  @include for-breakpoint-780 {
+    height: 250px;
+    padding: 0 50px;
+  }
+
+  @include for-breakpoint-640 {
+    padding: 0 20px;
+  }
+
+  @include for-breakpoint-500 {
+    height: 300px;
+  }
+
+  @include for-breakpoint-400 {
+    height: 350px;
+  }
 
   div {
     margin-right: 50px;
     height: 100%;
     width: 50%;
+
+    @include for-breakpoint-780 {
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   div:nth-of-type(1) {
-    // background: url("../../img/bandphoto.jpg");
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // background-size: cover;
     border: 1px solid black;
+
+    @include for-breakpoint-780 {
+      display: none;
+    }
   }
 
   div:nth-of-type(2) {
@@ -76,11 +114,22 @@
     p {
       font-size: 1.3rem;
       line-height: 2;
-    }
 
-    h1,
-    p {
-      //   text-align: right;
+      @include for-breakpoint-1280 {
+        line-height: 1.5;
+      }
+
+      @include for-breakpoint-1040 {
+        font-size: 1rem;
+      }
+
+      @include for-breakpoint-custom("350px") {
+        font-size: 0.9rem;
+      }
+
+      @include for-breakpoint-300 {
+        font-size: 0.8rem;
+      }
     }
 
     .Dash {
@@ -106,16 +155,45 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  //   border: 1px solid black;
+  border: 1px solid black;
+
+  @include for-breakpoint-780 {
+    height: 250px;
+    top: 100px;
+    padding: 0 50px;
+  }
+
+  @include for-breakpoint-640 {
+    padding: 0 20px;
+  }
+
+  @include for-breakpoint-500 {
+    height: 300px;
+  }
+
+  @include for-breakpoint-400 {
+    height: 350px;
+  }
 
   div {
     margin-right: 50px;
     height: 100%;
     width: 50%;
+
+    @include for-breakpoint-780 {
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   div:nth-of-type(2) {
     border: 1px solid black;
+
+    @include for-breakpoint-780 {
+      display: none;
+    }
   }
 
   div:nth-of-type(1) {
@@ -127,11 +205,22 @@
     p {
       font-size: 1.3rem;
       line-height: 2;
-    }
 
-    h1,
-    p {
-      //   text-align: right;
+      @include for-breakpoint-1280 {
+        line-height: 1.5;
+      }
+
+      @include for-breakpoint-1040 {
+        font-size: 1rem;
+      }
+
+      @include for-breakpoint-custom("350px") {
+        font-size: 0.9rem;
+      }
+
+      @include for-breakpoint-300 {
+        font-size: 0.8rem;
+      }
     }
 
     .Dash {
@@ -143,6 +232,9 @@
       background: black;
       border-radius: 25px;
       z-index: 99;
+      @include for-breakpoint-780 {
+        display: none;
+      }
     }
   }
 }
