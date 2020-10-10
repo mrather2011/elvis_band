@@ -37,7 +37,7 @@
 
   h1 {
     margin: 0;
-
+    text-align: center;
     font-family: "Baddest";
     letter-spacing: 5px;
     font-size: 3rem;
@@ -49,6 +49,9 @@
 
     @include for-breakpoint-640 {
       font-size: 2rem;
+    }
+    @include for-breakpoint-400 {
+      font-size: 1.5rem;
     }
   }
 }

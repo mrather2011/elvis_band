@@ -69,6 +69,11 @@ const MusicPlayer = (props, { top }) => {
       if (inPlay) {
         audio.current.play()
       }
+      if (typeof window !== "undefined") {
+        if (window.innerWidth < breakpoint500) {
+          setShowSongList(!showSongList)
+        }
+      }
     }
   }
 
@@ -223,6 +228,7 @@ const MusicPlayer = (props, { top }) => {
     }
     if (window.innerWidth < breakpoint640) {
       playerHeightAudio = "150"
+      playerHeightVideo = "150"
     }
     if (window.innerWidth < breakpoint500) {
       musicPadding = "20"
@@ -259,6 +265,7 @@ const MusicPlayer = (props, { top }) => {
     }
   `
 
+  let songFontSize = "1.5rem"
   let songDetailY
   let songDetailx = "right: 25px;"
   if (typeof window !== "undefined") {
@@ -268,6 +275,7 @@ const MusicPlayer = (props, { top }) => {
     }
     if (window.innerWidth < breakpoint400) {
       songDetailx = "right: 0"
+      songFontSize = "1.2rem"
     }
   }
   const songDetail = css`
@@ -276,7 +284,8 @@ const MusicPlayer = (props, { top }) => {
     ${songDetailx}
     z-index: 999;
     p {
-      font-size: 1.5rem;
+      text-align: center;
+      font-size: ${songFontSize};
       color: black;
     }
     span {
@@ -312,8 +321,9 @@ const MusicPlayer = (props, { top }) => {
     if (window.innerWidth < breakpoint500) {
       buttonFontSize = "0.6rem"
     }
-    if (window.innerWidth < breakpoint400) {
-      buttonMarginRight = "15px"
+
+    if (window.innerWidth < breakpoint300) {
+      buttonMarginRight = "5px"
     }
   }
   const controls = css`
@@ -366,10 +376,10 @@ const MusicPlayer = (props, { top }) => {
     }
   `
 
-  let mediaPosition = mediaType === "audio" ? "-60" : "0"
+  let mediaPosition = mediaType === "audio" ? "-60" : "-60"
   let mediaWith = "400px"
   if (typeof window !== "undefined") {
-    if (window.innerWidth < breakpoint500) {
+    if (window.innerWidth < breakpoint640) {
       mediaWith = "100%"
     }
   }
@@ -421,7 +431,7 @@ const MusicPlayer = (props, { top }) => {
     background: rgba(0, 0, 0, 0.7);
   `
   let timePositionY =
-    mediaType === "audio" ? "bottom: -75px;" : "bottom: -25px;"
+    mediaType === "audio" ? "bottom: -55px;" : "bottom: -45px;"
   let timePositionX = "right: 25px;"
   let timePositionBackground = "background: rgba(0, 0, 0, 0.7);"
   let timePositionColor = "#fff"
@@ -431,6 +441,10 @@ const MusicPlayer = (props, { top }) => {
       timePositionX = "left: 20px;"
       timePositionBackground = "transparent"
       timePositionColor = "black"
+    }
+    if (window.innerWidth < breakpoint500) {
+      timePositionY = "top: 25%;"
+      timePositionX = "left: 50%; transform: translatex(-50%);"
     }
   }
   const timeCounter = css`
