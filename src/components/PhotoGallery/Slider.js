@@ -161,7 +161,7 @@ const Slider = props => {
         setTimeout(() => {
           setState({
             ...state,
-            translate: translateWidth * count + translateWidth / 2,
+            translate: translateWidth * count + translateWidth / divider,
             activeIndex: count,
             transition: 0,
             jump: false,
