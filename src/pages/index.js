@@ -7,7 +7,7 @@ import Intro from "../components/Intro/Intro"
 import Testimonials from "../components/Testimonials/Testimonials"
 import Book from "../components/Book/Book"
 import PhotoGallery from "../components/PhotoGallery/Container"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql } from "gatsby"
 
 export const query = graphql`
   fragment fluidDetails on ImageSharpFluid {

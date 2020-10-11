@@ -70,6 +70,22 @@ const Slider = props => {
     direction: null,
   })
 
+  const updateDivider = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < breakpoint780 && state.divider > 1) {
+        setState({
+          ...state,
+          divider: 2,
+        })
+      } else if (window.innerWidth > breakpoint780 && state.divider === 1) {
+        setState({
+          ...state,
+          divider: 2,
+        })
+      }
+    }
+  }
+
   useEffect(() => {
     const windowResize = () => {
       setState({

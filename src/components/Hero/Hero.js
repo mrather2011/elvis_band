@@ -9,6 +9,7 @@ import {
   breakpoint400,
   breakpoint300,
 } from "../../globalStyles/breakpoints"
+import { useInView } from "react-intersection-observer"
 
 const Hero = props => {
   let shift = "right"
@@ -16,8 +17,15 @@ const Hero = props => {
     shift = window.innerWidth < breakpoint500 ? "85%" : "right"
   }
 
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
+
+  console.log(inView)
+
   return (
-    <div className={classes.Container}>
+    <div ref={ref} className={classes.Container}>
       <div className={classes.Backdrop}></div>
       <BackgroundImage
         tag="section"
