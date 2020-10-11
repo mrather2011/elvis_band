@@ -24,7 +24,10 @@ const Music = props => {
         <h1>A Taste of Our Catalogue</h1>
       </div>
 
-      <MusicPlayer audioTrackList={props.audioTrackList} />
+      <MusicPlayer
+        videoTrackList={props.videoTrackList}
+        audioTrackList={props.audioTrackList}
+      />
     </div>
   )
 }

@@ -34,6 +34,8 @@ const MusicPlayer = (props, { top }) => {
   const [showSpinner, setShowSpinner] = useState(true)
   const [showSongList, setShowSongList] = useState(false)
   const [windowWidth, setWindowWidth] = useState(null)
+  const [videoHover, setVideoHover] = useState(false)
+  const [videoFullScreen, setVideoFullScreen] = useState(false)
 
   const motionControls = useAnimation()
   const [ref, inView] = useInView()
@@ -45,20 +47,16 @@ const MusicPlayer = (props, { top }) => {
   }, [motionControls, inView])
 
   let audioList = props.audioTrackList
-
-  let videoList = [
-    { track: video1, name: "A Fan Favorite" },
-    { track: video2, name: "American Trilogy" },
-    { track: video3, name: "Burning Love" },
-    { track: video4, name: "All Shook Up" },
-  ]
+  let videoList = props.videoTrackList
+  console.log(videoFullScreen)
 
   let trackList = mediaType === "audio" ? audioList : videoList
   let trackListLength = trackList.length
 
   let audioSource =
     mediaType === "audio" ? trackList[currTrack].node.track.file.url : null
-  let videoSource = mediaType === "video" ? trackList[currTrack].track : null
+  let videoSource =
+    mediaType === "video" ? trackList[currTrack].node.video.file.url : null
 
   let playBtn = inPlay ? <FaPause /> : <FaPlay />
   let nextBtn = <FaForward />
@@ -83,25 +81,44 @@ const MusicPlayer = (props, { top }) => {
     }
   }, [windowWidth])
 
+  const videoFullScreenHandler = () => {
+    setVideoFullScreen(!videoFullScreen)
+  }
+
+  const videoHoverHandler = () => {
+    if (mediaType === "video") {
+      if (videoHover) {
+        setVideoHover(false)
+      } else if (!videoHover) {
+        setVideoHover(true)
+      }
+    }
+  }
+
   const trackSelector = async id => {
+    let idIndex
     if (mediaType === "audio") {
-      let idIndex = trackList.map(place => {
+      idIndex = trackList.map(place => {
         return place.node.track.id
       })
-      let indexNumber = idIndex.indexOf(id)
+    } else if (mediaType === "video") {
+      idIndex = trackList.map(place => {
+        return place.node.id
+      })
+    }
+    let indexNumber = idIndex.indexOf(id)
 
-      setCurrTrack(indexNumber)
+    setCurrTrack(indexNumber)
 
-      audio.current.pause()
+    audio.current.pause()
 
-      await audio.current.load()
-      if (inPlay) {
-        audio.current.play()
-      }
-      if (typeof window !== "undefined") {
-        if (window.innerWidth < breakpoint500) {
-          setShowSongList(!showSongList)
-        }
+    await audio.current.load()
+    if (inPlay) {
+      audio.current.play()
+    }
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < breakpoint500) {
+        setShowSongList(!showSongList)
       }
     }
   }
@@ -243,7 +260,17 @@ const MusicPlayer = (props, { top }) => {
   let containerWidth = "60%"
   let musicPadding = "100"
   let playerHeightAudio = "100"
-  let playerHeightVideo = "450"
+  let playerHeightVideo = "100"
+  let playerPositionY = !videoFullScreen
+    ? "top: 150px"
+    : "top: calc(100% - 350px)"
+  let videoHeight = !videoFullScreen ? "300px" : "calc(100% - 400px)"
+  let videoWidth = "100%"
+  let videoMaxHeight = videoFullScreen ? "max-height: 400px" : null
+  let videoMinHeight = videoFullScreen ? "min-height: 200px" : null
+  let videoPosition = !videoFullScreen ? "absolute" : "fixed"
+  let videoYPosition = !videoFullScreen ? "top: 165px" : "top: 100px"
+  let videoXPosition = "left: 0"
 
   if (typeof window !== "undefined") {
     if (window.innerWidth < breakpoint1280) {
@@ -258,6 +285,7 @@ const MusicPlayer = (props, { top }) => {
     if (window.innerWidth < breakpoint640) {
       playerHeightAudio = "150"
       playerHeightVideo = "150"
+      videoYPosition = !videoFullScreen ? "top: 225px" : "top: 150px;"
     }
     if (window.innerWidth < breakpoint500) {
       musicPadding = "20"
@@ -274,22 +302,53 @@ const MusicPlayer = (props, { top }) => {
     position: relative;
     height: ${playerHeight}px;
     width: ${containerWidth};
-    top: 150px;
+    ${playerPositionY};
     z-index: 99;
     transition: all 1s ease-in-out;
 
     video {
-      position: absolute;
-      top: 100px;
-      left: 0;
-      height: 300px;
-      width: 100%;
+      position: ${videoPosition};
+      ${videoXPosition};
+      ${videoYPosition};
+      ${videoMaxHeight};
+      ${videoMinHeight};
+      height: ${videoHeight};
+      width: ${videoWidth};
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       border: ${videoBorder};
+      cursor: pointer;
+      z-index: 99;
       transition: all 2s ease-in-out;
+    }
+  `
+  let videoBackdropColor = !videoHover ? "transparent" : "rgba(0,0,0,0.8)"
+  let videoTextDisplay = !videoHover ? "none" : "block"
+
+  let videoBackdrop = css`
+    cursor: ${videoHover && `pointer`};
+    position: ${videoPosition};
+    ${videoXPosition};
+    ${videoYPosition};
+    ${videoMaxHeight};
+    ${videoMinHeight};
+    height: ${videoHeight};
+    width: ${videoWidth};
+    z-index: 999;
+    background: ${videoBackdropColor};
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+
+    p {
+      display: ${videoTextDisplay};
+      color: #fff;
+      font-size: 1.5rem;
     }
   `
 
@@ -459,7 +518,7 @@ const MusicPlayer = (props, { top }) => {
     background: rgba(0, 0, 0, 0.7);
   `
   let timePositionY =
-    mediaType === "audio" ? "bottom: -55px;" : "bottom: -45px;"
+    mediaType === "audio" ? "bottom: -55px;" : "bottom: -55px;"
   let timePositionX = "right: 25px;"
   let timePositionBackground = "background: rgba(0, 0, 0, 0.7);"
   let timePositionColor = "#fff"
@@ -520,11 +579,12 @@ const MusicPlayer = (props, { top }) => {
     }
 
     ol {
+      padding-top: 25px;
       height: 100%;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
 
       li {
         color: #fff;
@@ -586,6 +646,18 @@ const MusicPlayer = (props, { top }) => {
       >
         {showSpinner ? <Spinner /> : null}
       </video>
+      <div
+        onClick={videoFullScreenHandler}
+        onMouseLeave={() => videoHoverHandler()}
+        onMouseEnter={() => videoHoverHandler()}
+        css={videoBackdrop}
+      >
+        <p>
+          {!videoFullScreen
+            ? "Click to Expand to Full Screen"
+            : "Click to Collapse Full Screen"}
+        </p>
+      </div>
       <div css={controls}>
         <div onClick={prevTrack}>{prevBtn}</div>
         <div onClick={stopTrack}>{stopBtn}</div>
@@ -594,7 +666,9 @@ const MusicPlayer = (props, { top }) => {
         <div css={songDetail}>
           <p>
             <span>
-              {mediaType === "audio" && trackList[currTrack].node.songName}
+              {mediaType === "audio"
+                ? trackList[currTrack].node.songName
+                : trackList[currTrack].node.videoTitle}
             </span>
           </p>
         </div>
@@ -638,6 +712,16 @@ const MusicPlayer = (props, { top }) => {
                   key={track.node.track.id}
                 >
                   {track.node.songName}
+                </li>
+              )
+            } else if (mediaType === "video") {
+              return (
+                <li
+                  css={i === currTrack ? activeTrack : null}
+                  onClick={() => trackSelector(track.node.id)}
+                  key={track.node.id}
+                >
+                  {track.node.videoTitle}
                 </li>
               )
             }

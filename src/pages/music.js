@@ -13,6 +13,19 @@ export const query = graphql`
   }
 
   query {
+    allContentfulVideos {
+      edges {
+        node {
+          videoTitle
+          id
+          video {
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
     allContentfulSongs {
       edges {
         node {
@@ -46,6 +59,7 @@ const MusicPage = props => {
         footerPosition={"relative"}
       >
         <Music
+          videoTrackList={props.data.allContentfulVideos.edges}
           audioTrackList={props.data.allContentfulSongs.edges}
           photo={props.data.musicImage.childImageSharp.fluid}
         />

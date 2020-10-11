@@ -16,7 +16,7 @@ export const query = graphql`
   }
 
   query {
-    historyOne: file(relativePath: { eq: "img/bandphoto.jpg" }) {
+    historyOne: file(relativePath: { eq: "img/elvispose.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
           ...fluidDetails
