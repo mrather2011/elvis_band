@@ -1,8 +1,18 @@
-import React from "react"
+import React, { useEffect } from "react"
 import classes from "./Testimonials.module.scss"
 import BackgroundImage from "gatsby-background-image"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const Testimonials = props => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible")
+    }
+  }, [controls, inView])
   return (
     <div className={classes.Container}>
       <BackgroundImage
@@ -18,10 +28,21 @@ const Testimonials = props => {
       >
         {" "}
       </BackgroundImage>
+
       <div className={classes.HeaderText}>
         <h1> Testimonials</h1>
       </div>
-      <div className={classes.TextContainer}>
+      <motion.div
+        animate={controls}
+        initial="hidden"
+        ref={ref}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 100 },
+        }}
+        transition={{ duration: 1 }}
+        className={classes.TextContainer}
+      >
         <div className={classes.Example}>
           <h1>Example 1</h1>
           <p>
@@ -43,7 +64,8 @@ const Testimonials = props => {
             quae.
           </p>
         </div>
-      </div>
+      </motion.div>
+
       <div className={classes.Backdrop}></div>
     </div>
   )

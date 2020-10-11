@@ -1,14 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import classes from "./Book.module.scss"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const Book = props => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible")
+    }
+  }, [controls, inView])
+
   return (
     <div className={classes.Container}>
       <div className={classes.HeaderText}>
         <h1>Book a Date</h1>
       </div>
 
-      <div className={classes.FormContainer}>
+      <motion.div
+        animate={controls}
+        initial="hidden"
+        ref={ref}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 100 },
+        }}
+        transition={{ duration: 1 }}
+        className={classes.FormContainer}
+      >
         <form>
           <div>
             <input
@@ -52,7 +73,7 @@ const Book = props => {
         <div className={classes.FormAction}>
           <h1>The King wants to perform for you</h1>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

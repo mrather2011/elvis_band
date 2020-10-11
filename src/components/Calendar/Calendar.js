@@ -1,9 +1,20 @@
-import React from "react"
+import React, { useEffect } from "react"
 import classes from "./Calendar.module.scss"
 import BackgroundImage from "gatsby-background-image"
 import moment from "moment"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const Calendar = props => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible")
+    }
+  }, [controls, inView])
+
   return (
     <div className={classes.Container}>
       <BackgroundImage
@@ -28,7 +39,17 @@ const Calendar = props => {
         <h1>Upcoming Shows</h1>
         <div></div>
       </div>
-      <div className={classes.Calendar}>
+      <motion.div
+        animate={controls}
+        initial="hidden"
+        ref={ref}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 100 },
+        }}
+        transition={{ duration: 1 }}
+        className={classes.Calendar}
+      >
         {props.showData.map((event, i) => {
           let dateTime = event.node.showDate
 
@@ -60,7 +81,7 @@ const Calendar = props => {
             </div>
           )
         })}
-      </div>
+      </motion.div>
     </div>
   )
 }

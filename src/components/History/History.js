@@ -1,8 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import classes from "./History.module.scss"
 import BackgroundImage from "gatsby-background-image"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const History = props => {
+  const controls = useAnimation()
+  const [refOne, inViewOne] = useInView()
+  const [refTwo, inViewTwo] = useInView()
+
+  useEffect(() => {
+    if (inViewOne || inViewTwo) {
+      controls.start("visible")
+    }
+  }, [controls, inViewOne, inViewTwo])
   return (
     <div className={classes.Container}>
       <div className={classes.HeaderText}>
@@ -21,7 +32,16 @@ const History = props => {
         >
           {" "}
         </BackgroundImage>
-        <div>
+        <motion.div
+          animate={controls}
+          initial="hidden"
+          ref={refOne}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 100 },
+          }}
+          transition={{ duration: 1 }}
+        >
           <div className={classes.Dash}></div>
 
           <p>
@@ -34,11 +54,20 @@ const History = props => {
             performance takes audiences on a ride through King’s early music all
             the way through his later ballads.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       <div className={classes.TextBoxTwo}>
-        <div>
+        <motion.div
+          animate={controls}
+          initial="hidden"
+          ref={refTwo}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 100 },
+          }}
+          transition={{ duration: 1 }}
+        >
           <div className={classes.Dash}></div>
 
           <p>
@@ -48,7 +77,7 @@ const History = props => {
             that transports audiences back in time to an era when The King ruled
             the airwaves! A true Rock & Roll spectacle!
           </p>
-        </div>
+        </motion.div>
         <BackgroundImage
           tag="section"
           style={{

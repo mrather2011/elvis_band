@@ -13,8 +13,19 @@ import {
   breakpoint400,
   breakpoint300,
 } from "../../globalStyles/breakpoints"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const Slider = props => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible")
+    }
+  }, [controls, inView])
+
   let carousel = props.carousel.edges
 
   // Breakpoint logic for slider styling
@@ -245,9 +256,20 @@ const Slider = props => {
   }
 
   return (
-    <div css={container}>
+    <motion.div
+      animate={controls}
+      initial="hidden"
+      ref={ref}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 200 },
+      }}
+      transition={{ duration: 1 }}
+      css={container}
+    >
       <div css={textContainer} ref={sliderContainer}>
         <SlideContent
+          ref={ref}
           count={count}
           activeIndex={activeIndex}
           width={width}
@@ -328,7 +350,7 @@ const Slider = props => {
         dotJump={index => dotJump(index)}
       />
       <Controls handleNext={nextSlide} handlePrev={prevSlide} />
-    </div>
+    </motion.div>
   )
 }
 

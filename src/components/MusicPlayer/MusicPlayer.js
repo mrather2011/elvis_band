@@ -17,6 +17,8 @@ import {
   breakpoint400,
   breakpoint300,
 } from "../../globalStyles/breakpoints"
+import { useInView } from "react-intersection-observer"
+import { motion, useAnimation } from "framer-motion"
 
 const MusicPlayer = (props, { top }) => {
   let progressElement = useRef()
@@ -32,6 +34,15 @@ const MusicPlayer = (props, { top }) => {
   const [showSpinner, setShowSpinner] = useState(true)
   const [showSongList, setShowSongList] = useState(false)
   const [windowWidth, setWindowWidth] = useState(null)
+
+  const motionControls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      motionControls.start("visible")
+    }
+  }, [motionControls, inView])
 
   let audioList = props.audioTrackList
 
@@ -554,7 +565,17 @@ const MusicPlayer = (props, { top }) => {
   `
 
   return (
-    <div css={musicCss}>
+    <motion.div
+      animate={motionControls}
+      initial="hidden"
+      ref={ref}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 100 },
+      }}
+      transition={{ duration: 0.5 }}
+      css={musicCss}
+    >
       <video
         ref={audio}
         onTimeUpdate={() => setCurrentTime(audio.current.currentTime)}
@@ -629,7 +650,7 @@ const MusicPlayer = (props, { top }) => {
         }}
         css={showSongList ? backdrop : null}
       ></div>
-    </div>
+    </motion.div>
   )
 }
 

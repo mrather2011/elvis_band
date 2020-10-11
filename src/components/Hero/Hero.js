@@ -10,6 +10,7 @@ import {
   breakpoint300,
 } from "../../globalStyles/breakpoints"
 import { useInView } from "react-intersection-observer"
+import { motion } from "framer-motion"
 
 const Hero = props => {
   let shift = "right"
@@ -38,7 +39,12 @@ const Hero = props => {
       ></BackgroundImage>
       <div className={classes.TextContainer}>
         <div className={classes.Dash}></div>
-        <div className={classes.Text}>
+        <motion.div
+          animate={{ y: 0, opacity: 1 }}
+          initial={{ y: 200, opacity: 0 }}
+          transition={{ duration: 1 }}
+          className={classes.Text}
+        >
           <h1>J.C. & The Elvis Experience</h1>
           <h2>Experience what it was like when Elvis ruled the airwaves</h2>
           <div>
@@ -49,7 +55,7 @@ const Hero = props => {
               <button>Explore Music</button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
