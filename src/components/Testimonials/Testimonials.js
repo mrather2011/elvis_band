@@ -3,6 +3,7 @@ import classes from "./Testimonials.module.scss"
 import BackgroundImage from "gatsby-background-image"
 import { useInView } from "react-intersection-observer"
 import { motion, useAnimation } from "framer-motion"
+import Slider from "./Slider"
 
 const Testimonials = props => {
   const controls = useAnimation()
@@ -43,27 +44,7 @@ const Testimonials = props => {
         transition={{ duration: 1 }}
         className={classes.TextContainer}
       >
-        <div className={classes.Example}>
-          <h1>Example 1</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
-            quae.
-          </p>
-        </div>
-        <div className={classes.Example}>
-          <h1>Example 2</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
-            quae.
-          </p>
-        </div>
-        <div className={classes.Example}>
-          <h1>Example 3</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
-            quae.
-          </p>
-        </div>
+        <Slider testimonials={props.testimonials} />
       </motion.div>
 
       <div className={classes.Backdrop}></div>

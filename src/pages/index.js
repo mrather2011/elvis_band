@@ -26,6 +26,15 @@ export const query = graphql`
   }
 
   query {
+    allContentfulTestimonial {
+      edges {
+        node {
+          author
+          quote
+          id
+        }
+      }
+    }
     allContentfulPhotoGallery {
       edges {
         node {
@@ -79,6 +88,7 @@ const IndexPage = props => {
         />
         <Intro />
         <Testimonials
+          testimonials={props.data.allContentfulTestimonial.edges}
           photo={props.data.testimonialsImage.childImageSharp.fluid}
         />
         <Book />
