@@ -23,8 +23,6 @@ const Hero = props => {
     threshold: 0,
   })
 
-  console.log(inView)
-
   return (
     <div ref={ref} className={classes.Container}>
       <div className={classes.Backdrop}></div>

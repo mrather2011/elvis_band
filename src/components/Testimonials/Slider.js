@@ -9,7 +9,7 @@ import { testContent } from "./Content"
 
 const Slider = props => {
   let textContainer = css`
-    height: 400px;
+    height: 450px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -175,7 +175,7 @@ const Slider = props => {
           if (i === 0) {
             return (
               <Slide
-                key={props.testimonials[count - 1].node.id}
+                key={i}
                 width={containerWidth}
                 quote={props.testimonials[count - 1].node.quote}
                 author={props.testimonials[count - 1].node.author}
@@ -184,7 +184,7 @@ const Slider = props => {
           } else if (i === count + 1) {
             return (
               <Slide
-                key={props.testimonials[0].node.id}
+                key={i}
                 width={containerWidth}
                 quote={props.testimonials[0].node.quote}
                 author={props.testimonials[0].node.author}
@@ -193,7 +193,7 @@ const Slider = props => {
           } else {
             return (
               <Slide
-                key={props.testimonials[place].node.id}
+                key={i}
                 width={containerWidth}
                 quote={props.testimonials[place].node.quote}
                 author={props.testimonials[place].node.author}

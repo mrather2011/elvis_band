@@ -37,7 +37,7 @@ const Dots = ({ activeIndex, dotJump, testimonials }) => {
     cursor: pointer;
     border: 1px solid #fff;
   `
-  console.log(activeIndex)
+
   return (
     <div css={container}>
       {Object.keys(testimonials).map((object, i) => {

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Fragment } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { css, jsx } from "@emotion/core"
 import Slide from "./Slide"
@@ -36,6 +36,7 @@ const Slider = props => {
   }
 
   let container = css`
+    margin: 0 auto;
     position: relative;
     top: 0px;
     height: 70%;
@@ -256,101 +257,102 @@ const Slider = props => {
   }
 
   return (
-    <motion.div
-      animate={controls}
-      initial="hidden"
-      ref={ref}
-      variants={{
-        visible: { opacity: 1, y: 0 },
-        hidden: { opacity: 0, y: 200 },
-      }}
-      transition={{ duration: 1 }}
-      css={container}
-    >
-      <div css={textContainer} ref={sliderContainer}>
-        <SlideContent
-          ref={ref}
-          count={count}
+    <Fragment>
+      <motion.div
+        animate={controls}
+        initial="hidden"
+        ref={ref}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 200 },
+        }}
+        transition={{ duration: 1 }}
+        css={container}
+      >
+        <div css={textContainer} ref={sliderContainer}>
+          <SlideContent
+            count={count}
+            activeIndex={activeIndex}
+            width={width}
+            translate={translate}
+            transition={transition}
+          >
+            {slidesLength.map((test, i) => {
+              let place = i - 2
+
+              if (i === 0) {
+                return (
+                  <Slide
+                    key={i}
+                    width={containerWidth}
+                    title={carousel[count - 2].node.caption}
+                    photo={carousel[count - 2].node.photo[0].fluid}
+                    slideMargin={slideMargin}
+                    slideKey={count - 2}
+                    activeIndex={activeIndex}
+                  />
+                )
+              } else if (i === 1) {
+                return (
+                  <Slide
+                    key={i}
+                    width={containerWidth}
+                    title={carousel[count - 1].node.caption}
+                    photo={carousel[count - 1].node.photo[0].fluid}
+                    slideMargin={slideMargin}
+                    slideKey={count - 1}
+                    activeIndex={activeIndex}
+                  />
+                )
+              } else if (i === count + 2) {
+                return (
+                  <Slide
+                    key={i}
+                    width={containerWidth}
+                    title={carousel[0].node.caption}
+                    photo={carousel[0].node.photo[0].fluid}
+                    slideMargin={slideMargin}
+                    slideKey={1}
+                    activeIndex={activeIndex}
+                  />
+                )
+              } else if (i === count + 3) {
+                return (
+                  <Slide
+                    key={i}
+                    width={containerWidth}
+                    title={carousel[1].node.caption}
+                    photo={carousel[1].node.photo[0].fluid}
+                    slideMargin={slideMargin}
+                    slideKey={2}
+                    activeIndex={activeIndex}
+                  />
+                )
+              } else if (i <= count + 1 && i > 1) {
+                return (
+                  <Slide
+                    key={i}
+                    width={containerWidth}
+                    title={carousel[place].node.caption}
+                    photo={carousel[place].node.photo[0].fluid}
+                    slideMargin={slideMargin}
+                    slideKey={place + 1}
+                    activeIndex={activeIndex}
+                  />
+                )
+              }
+            })}
+          </SlideContent>
+        </div>
+
+        <Dots
+          carousel={carousel}
           activeIndex={activeIndex}
-          width={width}
-          translate={translate}
-          transition={transition}
-        >
-          {slidesLength.map((test, i) => {
-            let place = i - 2
-
-            if (i === 0) {
-              return (
-                <Slide
-                  key={i}
-                  width={containerWidth}
-                  title={carousel[count - 2].node.caption}
-                  photo={carousel[count - 2].node.photo[0].fluid}
-                  slideMargin={slideMargin}
-                  slideKey={count - 2}
-                  activeIndex={activeIndex}
-                />
-              )
-            } else if (i === 1) {
-              return (
-                <Slide
-                  key={i}
-                  width={containerWidth}
-                  title={carousel[count - 1].node.caption}
-                  photo={carousel[count - 1].node.photo[0].fluid}
-                  slideMargin={slideMargin}
-                  slideKey={count - 1}
-                  activeIndex={activeIndex}
-                />
-              )
-            } else if (i === count + 2) {
-              return (
-                <Slide
-                  key={i}
-                  width={containerWidth}
-                  title={carousel[0].node.caption}
-                  photo={carousel[0].node.photo[0].fluid}
-                  slideMargin={slideMargin}
-                  slideKey={1}
-                  activeIndex={activeIndex}
-                />
-              )
-            } else if (i === count + 3) {
-              return (
-                <Slide
-                  key={i}
-                  width={containerWidth}
-                  title={carousel[1].node.caption}
-                  photo={carousel[1].node.photo[0].fluid}
-                  slideMargin={slideMargin}
-                  slideKey={2}
-                  activeIndex={activeIndex}
-                />
-              )
-            } else if (i <= count + 1 && i > 1) {
-              return (
-                <Slide
-                  key={i}
-                  width={containerWidth}
-                  title={carousel[place].node.caption}
-                  photo={carousel[place].node.photo[0].fluid}
-                  slideMargin={slideMargin}
-                  slideKey={place + 1}
-                  activeIndex={activeIndex}
-                />
-              )
-            }
-          })}
-        </SlideContent>
-      </div>
-
-      <Dots
-        carousel={carousel}
-        activeIndex={activeIndex}
-        dotJump={index => dotJump(index)}
-      />
-      <Controls handleNext={nextSlide} handlePrev={prevSlide} />
-    </motion.div>
+          dotJump={index => dotJump(index)}
+        />
+        <Controls handleNext={nextSlide} handlePrev={prevSlide} />
+      </motion.div>
+    </Fragment>
   )
 }
 

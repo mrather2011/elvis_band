@@ -10,7 +10,7 @@ const Dots = ({ activeIndex, dotJump, carousel }) => {
     transform: translatex(-50%);
     height: 50px;
     z-index: 999;
-    width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
