@@ -17,7 +17,6 @@ const Slide = props => {
     }
   }
 
-  console.log(textFontSize)
   let mainText = css`
     position: relative;
     top: 0;

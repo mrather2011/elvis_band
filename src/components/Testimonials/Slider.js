@@ -5,7 +5,6 @@ import Slide from "./Slide"
 import SlideContent from "./SliderContent"
 import Controls from "./Controls"
 import Dots from "./Dots"
-import { testContent } from "./Content"
 
 const Slider = props => {
   let textContainer = css`
