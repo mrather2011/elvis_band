@@ -97,8 +97,10 @@ const Book = props => {
         className={classes.FormContainer}
       >
         <form
-          method="POST"
+          name="contact"
+          method="post"
           data-netlify="true"
+          data-netlify-honeypot="bot-field"
           onSubmit={e => clearFormData(e)}
         >
           <div>
