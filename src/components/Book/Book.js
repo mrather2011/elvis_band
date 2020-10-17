@@ -67,7 +67,8 @@ const Book = props => {
     }
   }
 
-  const clearFormData = () => {
+  const clearFormData = e => {
+    e.preventDefault()
     setFormData({
       firstName: "",
       lastName: "",
@@ -95,7 +96,11 @@ const Book = props => {
         transition={{ duration: 1 }}
         className={classes.FormContainer}
       >
-        <form method="POST" data-netlify="true" onSubmit={clearFormData}>
+        <form
+          method="POST"
+          data-netlify="true"
+          onSubmit={e => clearFormData(e)}
+        >
           <div>
             <input
               value={formData.firstName}
