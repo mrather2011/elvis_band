@@ -101,7 +101,6 @@ const Book = props => {
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          onSubmit={e => clearFormData(e)}
         >
           <div>
             <input
