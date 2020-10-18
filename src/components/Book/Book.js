@@ -3,6 +3,8 @@ import classes from "./Book.module.scss"
 import { useInView } from "react-intersection-observer"
 import { motion, useAnimation } from "framer-motion"
 import NumberFormat from "react-number-format"
+import axios from "axios"
+import qs from "qs"
 
 const Book = props => {
   const controls = useAnimation()
@@ -21,6 +23,7 @@ const Book = props => {
     phone: "",
     hearAboutUs: "",
     other: "",
+    formSubmit: false,
   })
 
   const formDataHandler = (e, item) => {
@@ -67,8 +70,26 @@ const Book = props => {
     }
   }
 
-  const clearFormData = e => {
+  const submitFormHandler = e => {
     e.preventDefault()
+    setFormData({
+      ...formData,
+      formSubmit: true,
+    })
+
+    let formName = qs.stringify({ "form-name": "contact" })
+
+    axios({
+      method: "POST",
+      url: "/",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: { formName, ...formData },
+    })
+      .then(() => alert("Form was submitted successfully"))
+      .catch(error => alert(error))
+  }
+
+  useEffect(() => {
     setFormData({
       firstName: "",
       lastName: "",
@@ -76,9 +97,10 @@ const Book = props => {
       phone: "",
       hearAboutUs: "",
       other: "",
+      formSubmit: false,
     })
-  }
-  console.log(formData)
+  }, [formData.formSubmit])
+
   return (
     <div className={classes.Container}>
       <div className={classes.HeaderText}>
@@ -96,12 +118,7 @@ const Book = props => {
         transition={{ duration: 1 }}
         className={classes.FormContainer}
       >
-        <form
-          name="contact"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-        >
+        <form name="contact" onSubmit={submitFormHandler}>
           <div>
             <input
               value={formData.firstName}

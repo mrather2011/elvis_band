@@ -2,7 +2,7 @@ import React, { useState } from "react"
 // import logoImg from "../../../img/logo-only.png"
 // import lightLogo from "../../../img/Logo light.png"
 import classes from "./Navbar.module.scss"
-import { FaAlignJustify } from "react-icons/fa"
+import { FaAlignJustify, FaFacebook } from "react-icons/fa"
 import Navlist from "../Navlist"
 import Sidedrawer from "../Sidedrawer/Sidedrawer"
 
@@ -38,7 +38,15 @@ const Navbar = ({ navScroll, location }) => {
       )}
     >
       <Sidedrawer toggleSideDrawer={sideDrawerToggle} sDOpen={sideDrawerOpen} />
-
+      <div className={classes.SocialIcon}>
+        <a
+          target="_blank"
+          href="https://www.facebook.com/JCandtheelvisexperience"
+        >
+          <FaFacebook />
+        </a>
+      </div>
+      <div className={classes.FlexDivider}></div>
       <div
         className={[
           classes.ListContainer,

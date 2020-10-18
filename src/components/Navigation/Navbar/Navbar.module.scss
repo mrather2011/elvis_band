@@ -23,6 +23,28 @@
   border-bottom: 1px solid $timberwolf;
 }
 
+.SocialIcon {
+  cursor: pointer;
+  padding: 20px;
+
+  svg {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.SocialIcon:hover {
+  svg {
+    color: $green-blue-crayola;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.FlexDivider {
+  flex: 1;
+}
+
 .ListContainer {
   height: 100%;
   width: 50%;
