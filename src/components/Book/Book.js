@@ -118,7 +118,12 @@ const Book = props => {
         transition={{ duration: 1 }}
         className={classes.FormContainer}
       >
-        <form name="contact" onSubmit={submitFormHandler}>
+        <form
+          data-netlify-honeypot="bot-field"
+          data-netlify="true"
+          name="contact"
+          onSubmit={submitFormHandler}
+        >
           <div>
             <input
               value={formData.firstName}
