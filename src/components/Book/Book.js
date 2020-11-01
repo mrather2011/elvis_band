@@ -70,22 +70,21 @@ const Book = props => {
     }
   }
 
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&")
+  }
+
   const submitFormHandler = e => {
     e.preventDefault()
-    setFormData({
-      ...formData,
-      formSubmit: true,
-    })
 
-    let formName = qs.stringify({ "form-name": "contact" })
-
-    axios({
+    fetch("/", {
       method: "POST",
-      url: "/",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: { formName, ...formData },
+      body: encode({ "form-name": "contact", ...formData }),
     })
-      .then(() => alert("Form was submitted successfully"))
+      .then(() => alert("Success!"))
       .catch(error => alert(error))
   }
 
@@ -119,6 +118,7 @@ const Book = props => {
         className={classes.FormContainer}
       >
         <form
+          method="post"
           data-netlify-honeypot="bot-field"
           data-netlify="true"
           name="contact"
