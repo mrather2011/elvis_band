@@ -71,9 +71,6 @@ const Calendar = props => {
               <p>
                 <span>{timeStr}</span>
               </p>
-              <p>
-                <span>Location</span>
-              </p>
 
               <p>
                 <span>{`$${event.node.showPrice}`}</span>
