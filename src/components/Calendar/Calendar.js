@@ -50,34 +50,37 @@ const Calendar = props => {
         transition={{ duration: 1 }}
         className={classes.Calendar}
       >
-        {props.showData.map((event, i) => {
-          let dateTime = event.node.showDate
+        {props.showData
+          .slice(0)
+          .reverse()
+          .map((event, i) => {
+            let dateTime = event.node.showDate
 
-          dateTime = moment(dateTime).format("MMM Do YYYY, h:mm a")
-          let dateStr = dateTime.substr(0, dateTime.indexOf(","))
-          let timeStr = dateTime.substr(
-            dateTime.indexOf(",") + 1,
-            dateTime.length
-          )
+            dateTime = moment(dateTime).format("MMM Do YYYY, h:mm a")
+            let dateStr = dateTime.substr(0, dateTime.indexOf(","))
+            let timeStr = dateTime.substr(
+              dateTime.indexOf(",") + 1,
+              dateTime.length
+            )
 
-          return (
-            <div key={event.node.id} className={classes.Example}>
-              <p>
-                <span>{event.node.name}</span>
-              </p>
-              <p>
-                <span>{dateStr}</span>
-              </p>
-              <p>
-                <span>{timeStr}</span>
-              </p>
+            return (
+              <div key={event.node.id} className={classes.Example}>
+                <p>
+                  <span>{event.node.name}</span>
+                </p>
+                <p>
+                  <span>{dateStr}</span>
+                </p>
+                <p>
+                  <span>{timeStr}</span>
+                </p>
 
-              <p>
-                <span>{`$${event.node.showPrice}`}</span>
-              </p>
-            </div>
-          )
-        })}
+                <p>
+                  <span>{`$${event.node.showPrice}`}</span>
+                </p>
+              </div>
+            )
+          })}
       </motion.div>
     </div>
   )
